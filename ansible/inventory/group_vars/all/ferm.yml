@@ -1,0 +1,5 @@
+---
+
+ferm__enabled: True
+ferm__filter_icmp: False
+ferm__filter_syn: False

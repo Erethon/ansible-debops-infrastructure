@@ -1,0 +1,11 @@
+---
+
+- name: Monit configuration for all nodes
+  hosts: [ 'debops_all_hosts', '!debops_no_monit' ]
+  gather_facts: True
+  become: True
+
+  roles:
+
+      #    - role: debops.monit
+    - role: monit

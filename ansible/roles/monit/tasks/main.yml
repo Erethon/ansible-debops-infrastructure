@@ -1,0 +1,10 @@
+---
+
+- template:
+    src: "{{ item.src }}"
+    dest: "/etc/monit/conf.d/{{ item.dest }}"
+  with_items:
+    - {src: "fs.monit.j2", dest: "fs"}
+    - {src: "ssh.monit.j2", dest: "ssh"}
+    - {src: "cpu_ram.monit.j2", dest: "cpu_ram"}
+  notify: Restart Monit

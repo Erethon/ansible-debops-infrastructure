@@ -1,0 +1,10 @@
+---
+
+fail2ban_jails:
+  - name: 'ssh'
+    enabled: 'true'
+    port: 222
+    filter: 'sshd'
+    logpath: '/var/log/auth.log'
+    maxretry: 6
+

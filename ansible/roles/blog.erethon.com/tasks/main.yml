@@ -1,0 +1,14 @@
+---
+
+- name: blog.erethon.com nginx docker
+  docker:
+    name: blog.erethon.com
+    image: nginx
+    state: restarted
+    restart_policy: always
+    pull: always
+    ports:
+    - 127.0.0.1:18082:80
+    volumes:
+    - /data/volumes/blog:/usr/share/nginx/html:ro
+    - /data/volumes/blog/nginx.conf:/etc/nginx/nginx.conf:ro

@@ -1,0 +1,7 @@
+---
+- hosts: webd
+  become: True
+
+  roles:
+
+    - role: static.erethon.com

@@ -1,0 +1,5 @@
+---
+
+ntp__daemon_enabled: True
+ntp__daeon: 'openntpd'
+ntp__firewall_access: False

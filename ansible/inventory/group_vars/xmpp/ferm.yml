@@ -1,0 +1,11 @@
+---
+
+ferm__group_rules:
+  - type: 'accept'
+    filename: 'prosody'
+    name: 'prosody'
+    table: 'filter'
+    chain: 'INPUT'
+    dport: [ 5222, 5269 ]
+    protocol: 'tcp'
+    domain: 'ip'

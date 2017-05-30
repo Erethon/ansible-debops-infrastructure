@@ -1,0 +1,4 @@
+---
+
+postfix_local_maincf: |
+  inet_protocols = ipv4

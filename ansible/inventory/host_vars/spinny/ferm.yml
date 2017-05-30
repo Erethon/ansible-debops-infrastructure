@@ -1,0 +1,67 @@
+---
+
+ferm__host_rules:
+  - type: 'accept'
+    filename: 'tinc'
+    name: 'tinc'
+    table: 'filter'
+    chain: 'INPUT'
+    dport: [ 655 ]
+    protocol: ['tcp', 'udp']
+    domain: 'ip'
+
+  - type: 'accept'
+    filename: 'haproxy'
+    name: 'haproxy'
+    table: 'filter'
+    chain: 'INPUT'
+    dport: [ 80, 443 ]
+    protocol: 'tcp'
+    domain: 'ip'
+
+  - type: 'accept'
+    filename: 'haproxy_internal'
+    name: 'haproxy_internal'
+    table: 'filter'
+    chain: 'INPUT'
+    dport: [ 1936 ]
+    protocol: 'tcp'
+    domain: 'ip'
+    saddr: '192.168.166.0/24'
+
+  - type: 'accept'
+    filename: 'openvpn'
+    name: 'openvpn'
+    table: 'filter'
+    chain: 'INPUT'
+    dport: [ 1194 ]
+    protocol: 'udp'
+    domain: 'ip'
+
+  - type: 'accept'
+    filename: 'vmnet'
+    name: 'vmnet'
+    table: 'filter'
+    chain: 'FORWARD'
+    domain: 'ip'
+    interface_present: 'tun0'
+    outerface_present: 'virbr0'
+    comment: 'Forward traffic from OpenVPN to VMs'
+
+  - type: 'accept'
+    filename: 'vmnet_public'
+    name: 'vmnet_public'
+    table: 'filter'
+    chain: 'FORWARD'
+    domain: 'ip'
+    interface_present: 'virbr0'
+    saddr: '192.168.122.0/24'
+    comment: 'Forward traffic from VMs to the internet'
+
+  - type: 'custom'
+    filename: 'vmnet_nat'
+    rules: "domain ip table nat chain POSTROUTING {
+        outerface br0 {
+            MASQUERADE;
+        }
+    }"

@@ -1,0 +1,4 @@
+---
+
+auth_ldap_conf: False
+auth_nslcd_conf: False

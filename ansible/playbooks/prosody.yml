@@ -1,0 +1,10 @@
+---
+
+- hosts: xmpp
+  become: True
+
+  roles:
+
+    - role: debops.ferm
+      tags: [ 'role::ferm' ]
+    - role: chat.erethon.com
