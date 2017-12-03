@@ -1,0 +1,6 @@
+apmd_flags="-A"
+slaacd_flags=NO
+smtpd_flags=NO
+sshd_flags=NO
+xenodm_flags=
+sensorsd_flags="-c 60"
