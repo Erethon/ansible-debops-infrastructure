@@ -1,0 +1,31 @@
+* Ansible DebOps Infrastructure
+** Overview
+This is the [[https://www.ansible.com][Ansible]] and [[https://debops.org][DebOps]] set of scripts and settings that
+I use to manage my personal infrastructure. A lot of files are still
+private, but I'm in the process of cleaning them up, abstracting roles
+as much as possible and moving anything that's really private under
+`secret`.
+
+** Using this
+Some [[https://docs.ansible.com/ansible/intro_getting_started.html][familiarity with Ansible]] is assumed. The [[http://docs.debops.org/en/latest/debops/docs/installation.html][DebOps documentation]] has all the
+necessary information, but the TL;DR is:
+
+*** Installing DebOps
+#+BEGIN_SRC sh
+pip install debops
+debops-update
+#+END_SRC
+
+*** Initializing a host
+After adding a host to the inventory:
+
+#+BEGIN_SRC sh
+debops bootstrap -l new_host -b
+debops -l new_host
+#+END_SRC
+
+** Hosts not covered by this
+Some hosts like my laptop or my desktop, I don't want to manage using
+Ansible because...reasons. For these hosts I usually have a role with
+some files that I simply might copy over or just store them in this
+git repo for safekeeping.
