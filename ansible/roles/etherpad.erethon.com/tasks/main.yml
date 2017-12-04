@@ -1,0 +1,30 @@
+---
+
+- name: etherpad.erethon.com mysql docker
+  docker_container:
+    name: etherpad-db
+    image: mysql/mysql-server
+    state: started
+    restart_policy: always
+    pull: true
+    ports:
+      - 127.0.0.1:3306:3306
+    volumes:
+      - /data/volumes/etherpad:/var/lib/mysql
+    env:
+      MYSQL_ROOT_PASSWORD="{{ etherpad__mysql_root_password }}"
+
+- name: etherpad.erethon.com node docker
+  docker_container:
+    name: etherpad-node
+    image: tvelocity/etherpad-lite
+    state: started
+    restart_policy: always
+    pull: true
+    ports:
+      - 127.0.0.1:18084:9001
+    env:
+      ETHERPAD_DB_PASSWORD="{{ etherpad__mysql_root_password }}"
+      ETHERPAD_DB_HOST="mysql"
+      ETHERPAD_DB_NAME="pad"
+    links: etherpad-db:mysql
