@@ -7,8 +7,6 @@
     state: started
     restart_policy: always
     pull: true
-    ports:
-      - 127.0.0.1:3306:3306
     volumes:
       - /data/volumes/etherpad:/var/lib/mysql
     env:
