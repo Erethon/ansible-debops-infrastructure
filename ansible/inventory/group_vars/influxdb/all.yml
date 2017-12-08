@@ -1,0 +1,8 @@
+---
+
+influxdb__volume: '/data/volumes/influxdb'
+influxdb__collectd_db: 'collectd0'
+influxdb__admin_user: '{{ lookup("password", secret + "/credentials/influxdb/admin_user") }}'
+influxdb__admin_password: '{{ lookup("password", secret + "/credentials/influxdb/admin_password") }}'
+influxdb__user: '{{ lookup("password", secret + "/credentials/influxdb/user") }}'
+influxdb__user_password: '{{ lookup("password", secret + "/credentials/influxdb/user_password") }}'
