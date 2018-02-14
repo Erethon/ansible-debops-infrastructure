@@ -1,0 +1,5 @@
+---
+
+grafana__volume: '/data/volumes/grafana'
+grafana__admin_user: '{{ lookup("password", secret + "/credentials/grafana/admin_user") }}'
+grafana__admin_password: '{{ lookup("password", secret + "/credentials/grafana/admin_password") }}'

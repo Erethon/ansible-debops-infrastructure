@@ -1,5 +1,6 @@
 ---
 
+influxdb__name: 'influx-collectd'
 influxdb__volume: '/data/volumes/influxdb'
 influxdb__collectd_db: 'collectd0'
 influxdb__admin_user: '{{ lookup("password", secret + "/credentials/influxdb/admin_user") }}'

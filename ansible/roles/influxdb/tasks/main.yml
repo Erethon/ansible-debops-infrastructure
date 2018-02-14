@@ -18,7 +18,7 @@
 
 - name: InfluxDB container
   docker_container:
-    name: influx-collectd
+    name: "{{ influxdb__name }}"
     image: influxdb
     state: started
     restart_policy: always
