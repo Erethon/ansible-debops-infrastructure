@@ -7,4 +7,3 @@ fail2ban_jails:
     filter: 'sshd'
     logpath: '/var/log/auth.log'
     maxretry: 6
-
