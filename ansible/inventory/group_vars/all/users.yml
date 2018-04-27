@@ -2,6 +2,13 @@
 
 users__enabled: True
 
+users__dotfiles_enabled: True
+users__dotfiles_name: 'erethon'
+
+users__dotfiles_default_map:
+  'erethon':
+    repo: 'https://github.com/erethon/dotfiles.git'
+
 users__accounts:
   - name: 'dgrig'
     state: present
