@@ -2,15 +2,6 @@
 
 ferm__host_rules:
   - type: 'accept'
-    filename: 'tinc'
-    name: 'tinc'
-    table: 'filter'
-    chain: 'INPUT'
-    dport: [ 655 ]
-    protocol: ['tcp', 'udp']
-    domain: 'ip'
-
-  - type: 'accept'
     filename: 'haproxy'
     name: 'haproxy'
     table: 'filter'
@@ -18,16 +9,6 @@ ferm__host_rules:
     dport: [ 80, 443 ]
     protocol: 'tcp'
     domain: 'ip'
-
-  - type: 'accept'
-    filename: 'haproxy_internal'
-    name: 'haproxy_internal'
-    table: 'filter'
-    chain: 'INPUT'
-    dport: [ 1936 ]
-    protocol: 'tcp'
-    domain: 'ip'
-    saddr: '192.168.166.0/24'
 
   - type: 'accept'
     filename: 'openvpn'
@@ -61,7 +42,8 @@ ferm__host_rules:
   - type: 'custom'
     filename: 'vmnet_nat'
     rules: "domain ip table nat chain POSTROUTING {
-        outerface br0 {
+        outerface virbr0 {
             MASQUERADE;
         }
     }"
+    comment: 'Perform NAT for VMs'
