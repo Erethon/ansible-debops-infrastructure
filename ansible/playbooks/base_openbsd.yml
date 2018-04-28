@@ -1,0 +1,9 @@
+---
+
+- name: OpenBSD main config
+  hosts: [ 'openbsd', '!openbsd_exclude' ]
+  gather_facts: True
+  become: True
+
+  roles:
+    - openbsd
