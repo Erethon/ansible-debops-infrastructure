@@ -41,9 +41,11 @@ ferm__host_rules:
 
   - type: 'custom'
     filename: 'vmnet_nat'
-    rules: "domain ip table nat chain POSTROUTING {
-        outerface virbr0 {
-            MASQUERADE;
-        }
-    }"
+    name: 'vmnet_nat'
     comment: 'Perform NAT for VMs'
+    rules: |
+      domain ip table nat chain POSTROUTING {
+        outerface enp0s20f0 {
+          MASQUERADE;
+        }
+      }
