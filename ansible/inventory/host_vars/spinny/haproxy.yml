@@ -1,3 +1,4 @@
 ---
 
-haproxy__grafana_backend_port: 18083
+prosody__public_ip: '163.172.24.171'
+prosody__private_ip: '192.168.122.2'
