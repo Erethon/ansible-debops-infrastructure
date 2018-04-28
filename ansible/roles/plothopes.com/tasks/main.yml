@@ -1,0 +1,28 @@
+---
+
+- name: plothopes.com mysql docker
+  docker_container:
+    name: plothopes-db
+    image: mysql:5
+    state: started
+    restart_policy: always
+    pull: true
+    volumes:
+      - "{{ docker__volumes_location }}/plothopes-db:/var/lib/mysql"
+    env:
+      MYSQL_ROOT_PASSWORD: "{{ plothopes__mysql_root_password }}"
+
+- name: plothopes.com wordpress docker
+  docker_container:
+    name: plothopes-wordpress
+    image: wordpress
+    state: started
+    restart_policy: always
+    pull: true
+    ports:
+      - "{{ plothopes__private_ip }}:{{ plothopes__port }}:80"
+    volumes:
+      - "{{ docker__volumes_location }}/plothopes-wp/sparkling:/var/www/html/wp-content/themes/sparkling/"
+      - "{{ docker__volumes_location }}/plothopes-wp/uploads:/var/www/html/wp-content/uploads/"
+      - "{{ docker__volumes_location }}/plothopes-wp/plugins:/var/www/html/wp-content/plugins/"
+    links: plothopes-db:mysql
