@@ -52,17 +52,22 @@ frontend eighty
     redirect scheme https if !{ ssl_fc }
 
 frontend ssl
-    bind *:443 ssl crt /etc/ssl/private/plothopes.com/plothopes.pem
+    bind *:443 ssl crt /etc/ssl/private/plothopes.com/plothopes.pem ssl crt /etc/ssl/private/erethon.com/capitalism.pem
     mode http
     http-response set-header Strict-Transport-Security max-age=16000000;\ includeSubDomains;\ preload
     http-request set-header X-Forwarded-Proto https if { ssl_fc }
 
     use_backend local if { url_beg /.well-known }
     use_backend plothopes if { hdr(host) -i plothopes.com -i www.plothopes.com }
+    use_backend static if { hdr(host) -i capitalism.erethon.com -i hacked.erethon.com }
 
 backend plothopes
     mode http
     server plothopes {{ plothopes__private_ip }}:{{ plothopes__port }} 
+
+backend static
+    mode http
+    server webd {{ static__private_ip }}:80
 
 backend local
     mode http
