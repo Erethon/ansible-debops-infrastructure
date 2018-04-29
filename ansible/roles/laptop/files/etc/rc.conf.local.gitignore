@@ -4,3 +4,4 @@ smtpd_flags=NO
 sshd_flags=NO
 xenodm_flags=
 sensorsd_flags="-c 60"
+unbound_flags="-c /etc/unbound.conf"
