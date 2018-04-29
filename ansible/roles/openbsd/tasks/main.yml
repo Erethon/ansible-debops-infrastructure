@@ -1,7 +1,7 @@
 ---
 
 - name: Copy installurl
-  file:
+  copy:
     src: installurl
     dest: /etc/installurl
 
