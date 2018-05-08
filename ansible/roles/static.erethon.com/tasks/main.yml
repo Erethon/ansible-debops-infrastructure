@@ -23,4 +23,5 @@
   with_items:
       - capitalism
       - hacked
+      - erethon
   notify: Restart httpd
