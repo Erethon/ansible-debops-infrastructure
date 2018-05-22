@@ -20,3 +20,6 @@
 
     - role: debops.docker
       tags: [ 'role::docker' ]
+
+    - role: docker
+      tags: [ 'custom_docker']
