@@ -49,3 +49,22 @@ ferm__host_rules:
           MASQUERADE;
         }
       }
+
+  - type: 'accept'
+    filename: 'prosody_forward'
+    name: 'prosody_forward'
+    table: 'filter'
+    chain: 'FORWARD'
+    domain: 'ip'
+    state: 'NEW'
+    dport: [ 5222 ]
+
+  - type: 'custom'
+    filename: 'prosody_nat'
+    name: 'prosody_nat'
+    rules: |
+      domain ip table nat chain PREROUTING {
+        protocol tcp dport 5222 {
+          DNAT to {{ prosody__private_ip }}:5222;
+        }
+      }

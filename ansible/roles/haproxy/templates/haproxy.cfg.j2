@@ -28,15 +28,6 @@ defaults
     errorfile 503 /etc/haproxy/errors/503.http
     errorfile 504 /etc/haproxy/errors/504.http
 
-frontend prosody
-    bind {{ prosody__public_ip }}:5222
-    mode tcp
-    default_backend prosody_backend
-
-backend prosody_backend
-    mode tcp
-    server prosody {{ prosody__private_ip }}:5222
-
 frontend prosody_muc
     bind {{ prosody__public_ip }}:5269
     mode tcp
