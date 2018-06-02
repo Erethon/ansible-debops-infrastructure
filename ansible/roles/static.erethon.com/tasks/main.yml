@@ -24,4 +24,5 @@
       - capitalism
       - hacked
       - erethon
+      - blog
   notify: Restart httpd

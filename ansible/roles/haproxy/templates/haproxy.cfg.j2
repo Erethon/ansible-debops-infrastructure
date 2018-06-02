@@ -43,7 +43,7 @@ frontend eighty
     redirect scheme https if !{ ssl_fc }
 
 frontend ssl
-    bind *:443 ssl crt /etc/ssl/private/plothopes.com/plothopes.pem ssl crt /etc/ssl/private/erethon.com/capitalism.pem ssl crt /etc/ssl/private/erethon.com/erethon.pem ssl crt /etc/ssl/private/erethon.com/f.pem
+    bind *:443 ssl crt /etc/ssl/private/plothopes.com/plothopes.pem ssl crt /etc/ssl/private/erethon.com/capitalism.pem ssl crt /etc/ssl/private/erethon.com/erethon.pem ssl crt /etc/ssl/private/erethon.com/f.pem ssl crt /etc/ssl/private/erethon.com/grafana.pem ssl crt /etc/ssl/private/erethon.com/blog.pem
     mode http
     http-response set-header Strict-Transport-Security max-age=16000000;\ includeSubDomains;\ preload
     http-request set-header X-Forwarded-Proto https if { ssl_fc }
@@ -51,7 +51,8 @@ frontend ssl
     use_backend local if { url_beg /.well-known }
     use_backend plothopes if { hdr(host) -i plothopes.com -i www.plothopes.com }
     use_backend f.erethon.com if { hdr(host) -i f.erethon.com }
-    use_backend static if { hdr(host) -i capitalism.erethon.com -i hacked.erethon.com -i erethon.com -i www.erethon.com }
+    use_backend grafana.erethon.com if { hdr(host) -i grafana.erethon.com }
+    use_backend static if { hdr(host) -i capitalism.erethon.com -i hacked.erethon.com -i erethon.com -i www.erethon.com -i blog.erethon.com }
 
 backend plothopes
     mode http
@@ -60,6 +61,10 @@ backend plothopes
 backend f.erethon.com
     mode http
     server f.erethon.com {{ files__private_ip }}:{{ files__port }} 
+
+backend grafana.erethon.com
+    mode http
+    server grafana.erethon.com {{ grafana__private_ip }}:{{ grafana__port }} 
 
 backend static
     mode http
