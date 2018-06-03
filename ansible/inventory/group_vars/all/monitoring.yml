@@ -1,0 +1,5 @@
+---
+
+node_exporter__bundle: https://github.com/prometheus/node_exporter/releases/download/v0.16.0/node_exporter-0.16.0.linux-amd64.tar.gz
+node_exporter__checksum: "sha256:e92a601a5ef4f77cce967266b488a978711dabc527a720bea26505cba426c029"
+node_exporter__listen_address: "{{ ansible_host }}"
