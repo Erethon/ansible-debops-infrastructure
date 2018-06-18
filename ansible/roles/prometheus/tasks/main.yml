@@ -1,0 +1,40 @@
+---
+
+- file:
+    name: "{{docker__volumes_location }}/prometheus"
+    state: "directory"
+    owner: "nobody"
+    group: "nogroup"
+
+- file:
+    name: "{{docker__volumes_location }}/grafana"
+    state: "directory"
+    owner: 472
+    group: 472
+
+- name: Prometheus container
+  docker_container:
+    name: "{{ prometheus__name }}"
+    image: prom/prometheus
+    state: started
+    restart_policy: always
+    pull: true
+    volumes:
+      - "{{ docker__volumes_location }}/prometheus:/prometheus"
+
+- name: Grafana container
+  docker_container:
+    name: "{{ grafana__name }}"
+    image: grafana/grafana
+    state: started
+    restart_policy: always
+    pull: true
+    volumes:
+      - "{{ docker__volumes_location }}/grafana:/var/lib/grafana"
+    ports:
+      - "{{ grafana__private_ip }}:{{ grafana__port }}:3000"
+    links:
+      - "prometheus:{{ prometheus__name }}"
+    env:
+      GF_SECURITY_ADMIN_USER="{{ grafana__admin_user }}"
+      GF_SECURITY_ADMIN_PASSWORD="{{ grafana__admin_password }}"

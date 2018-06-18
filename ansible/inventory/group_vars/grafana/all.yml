@@ -1,5 +1,7 @@
 ---
 
-grafana__volume: '/data/volumes/grafana'
 grafana__admin_user: '{{ lookup("password", secret + "/credentials/grafana/admin_user") }}'
 grafana__admin_password: '{{ lookup("password", secret + "/credentials/grafana/admin_password") }}'
+grafana__private_ip: '192.168.122.5'
+grafana__port: '80'
+grafana__name: 'grafana'
