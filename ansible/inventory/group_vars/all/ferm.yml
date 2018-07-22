@@ -4,3 +4,14 @@ ferm__enabled: True
 ferm__filter_icmp: False
 ferm__filter_syn: False
 ferm__filter_recent: False
+
+ferm__group_rules:
+  - name: 'node_exporter'
+    type: 'accept'
+    filename: 'node_exporter'
+    table: 'filter'
+    chain: 'INPUT'
+    dport: [ 9100 ]
+    saddr: "{{ hostvars['prometheus_host'].ansible_host }}"
+    protocol: 'tcp'
+    domain: 'ip'
