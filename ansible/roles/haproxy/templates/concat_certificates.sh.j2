@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+
+{% for item in certs__names %}
+cat /etc/letsencrypt/live/{{ item }}/fullchain.pem /etc/letsencrypt/live/{{ item }}/privkey.pem > /etc/ssl/private/{{ item }}.pem;
+{% endfor %}

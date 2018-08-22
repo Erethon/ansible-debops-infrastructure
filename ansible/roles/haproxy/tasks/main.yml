@@ -1,9 +1,11 @@
 ---
 
-- template:
-    src: "{{ item }}"
-    dest: /etc/haproxy/
+- name: Configure HAProxy and script to renew certificates
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
   notify: Reload haproxy
   with_items:
-    - haproxy.cfg.j2
-    - crt-list.cfg.j2
+    - { src: "haproxy.cfg.j2", dest: "/etc/haproxy/haproxy.cfg" }
+    - { src: "crt-list.cfg.j2", dest: "/etc/haproxy/crt-list.cfg" }
+    - { src: "concat_certificates.sh.j2", dest: "/usr/bin/concat_certificates.sh" }

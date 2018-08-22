@@ -1,0 +1,9 @@
+---
+
+cron__host_jobs:
+  "cert_concat":
+    user: "root"
+    jobs:
+      - name: "Concat renewed certificates"
+        job: "sh /usr/bin/concat_certificates.sh"
+    special_time: "daily"
