@@ -5,7 +5,7 @@ ferm__filter_icmp: False
 ferm__filter_syn: False
 ferm__filter_recent: False
 
-ferm__group_rules:
+ferm__rules:
   - name: 'node_exporter'
     type: 'accept'
     filename: 'node_exporter'
