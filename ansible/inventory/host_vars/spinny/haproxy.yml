@@ -3,3 +3,7 @@
 prosody__public_ip: '163.172.24.171'
 prosody__private_ip: '192.168.122.2'
 static__private_ip: '192.168.122.2'
+
+certs__names: ['f.erethon.com', 'chat.erethon.com', 'grafana.erethon.com',
+               'capitalism.erethon.com', 'blog.erethon.com', 'erethon.com',
+               'www.plothopes.com']

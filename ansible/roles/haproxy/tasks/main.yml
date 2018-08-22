@@ -1,6 +1,9 @@
 ---
 
 - template:
-    src: haproxy.cfg.j2
-    dest: /etc/haproxy/haproxy.cfg
+    src: "{{ item }}"
+    dest: /etc/haproxy/
   notify: Reload haproxy
+  with_items:
+    - haproxy.cfg.j2
+    - crt-list.cfg.j2

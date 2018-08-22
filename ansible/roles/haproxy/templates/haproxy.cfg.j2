@@ -43,7 +43,7 @@ frontend eighty
     redirect scheme https if !{ ssl_fc }
 
 frontend ssl
-    bind *:443 ssl crt /etc/ssl/private/plothopes.com/plothopes.pem ssl crt /etc/ssl/private/erethon.com/capitalism.pem ssl crt /etc/ssl/private/erethon.com/erethon.pem ssl crt /etc/ssl/private/erethon.com/f.pem ssl crt /etc/ssl/private/erethon.com/grafana.pem ssl crt /etc/ssl/private/erethon.com/blog.pem
+    bind *:443 ssl crt-list /etc/haproxy/crt-list.cfg
     mode http
     http-response set-header Strict-Transport-Security max-age=16000000;\ includeSubDomains;\ preload
     http-request set-header X-Forwarded-Proto https if { ssl_fc }
