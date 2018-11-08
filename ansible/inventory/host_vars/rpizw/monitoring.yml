@@ -1,4 +1,0 @@
----
-
-node_exporter__bundle: https://github.com/prometheus/node_exporter/releases/download/v0.16.0/node_exporter-0.16.0.linux-armv6.tar.gz
-node_exporter__checksum: "sha256:f9518aea4fa7127122a6bf384ba8f70120deaaef75532749f1765cf6e25fd820"

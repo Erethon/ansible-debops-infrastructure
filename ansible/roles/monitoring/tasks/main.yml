@@ -1,63 +1,9 @@
 ---
 
-- name: Download node_exporter
-  get_url:
-      url: "{{ node_exporter__bundle }}"
-      dest: /tmp/node_exporter.tar.gz
-      checksum: "{{ node_exporter__checksum }}"
-
-- file:
-    path: /tmp/node_exporter/
-    state: directory
-
-- name: Extract node exporter bundle
-  unarchive:
-    src: /tmp/node_exporter.tar.gz
-    dest: /tmp/node_exporter
-    remote_src: yes
-    list_files: yes
-  register: unarchived_files
-
-- name: Copy node_exporter to /usr/sbin/
-  copy:
-    src: "/tmp/node_exporter/{{ unarchived_files.files[0] }}/node_exporter"
-    dest: "/usr/sbin/"
-    remote_src: yes
-    owner: root
-    group: root
-    mode: 0755
-
-- name: Delete /tmp/node_exporter
-  file:
-    path: /tmp/node_exporter
-    state: absent
-
-- name: Create node_exporter system user
-  user:
-    name: node_exporter
-    create_home: no
-    system: yes
-    shell: "/sbin/nologin"
-
-- name: Copy systemd unit file
-  copy:
-    src: node_exporter.service
-    dest: /etc/systemd/system/
-    owner: root
-    group: root
-    mode: 0644
-
 - name: Copy systemd environment file
   template:
     src: sysconfig.node_exporter.j2
-    dest: /etc/default/node_exporter
+    dest: /etc/default/prometheus-node-exporter
     owner: root
     group: root
     mode: 0644
-
-- name: Enable node_exporter systemd service
-  systemd:
-    name: node_exporter
-    daemon_reload: yes
-    state: restarted
-    enabled: yes
