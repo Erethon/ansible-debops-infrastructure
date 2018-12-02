@@ -52,7 +52,7 @@ frontend ssl
     use_backend plothopes if { hdr(host) -i plothopes.com -i www.plothopes.com }
     use_backend f.erethon.com if { hdr(host) -i f.erethon.com }
     use_backend grafana.erethon.com if { hdr(host) -i grafana.erethon.com }
-    use_backend static if { hdr(host) -i capitalism.erethon.com -i hacked.erethon.com -i erethon.com -i www.erethon.com -i blog.erethon.com }
+    use_backend static if { hdr(host) -i capitalism.erethon.com -i hacked.erethon.com -i erethon.com -i www.erethon.com -i blog.erethon.com -i about.erethon.com -i git.erethon.com }
 
 backend plothopes
     mode http

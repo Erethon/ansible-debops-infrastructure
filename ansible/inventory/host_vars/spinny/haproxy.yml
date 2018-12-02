@@ -6,4 +6,4 @@ static__private_ip: '192.168.122.2'
 
 certs__names: ['f.erethon.com', 'chat.erethon.com', 'grafana.erethon.com',
                'capitalism.erethon.com', 'blog.erethon.com', 'erethon.com',
-               'www.plothopes.com']
+               'www.plothopes.com', 'about.erethon.com', 'git.erethon.com']
