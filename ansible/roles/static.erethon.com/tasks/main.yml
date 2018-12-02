@@ -21,8 +21,10 @@
     path: /etc/httpd.conf
     line: 'include "/etc/httpd/{{ item }}.conf"'
   with_items:
-      - capitalism
-      - hacked
-      - erethon
-      - blog
+    - capitalism
+    - hacked
+    - erethon
+    - blog
+    - about.erethon.com
+    - git.erethon.com
   notify: Restart httpd
