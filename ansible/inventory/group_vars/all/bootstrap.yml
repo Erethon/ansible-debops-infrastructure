@@ -1,5 +1,5 @@
 ---
 
-bootstrap__domain: 'erethon.com'
+netbase__domain: 'erethon.com'
 bootstrap__admin_default_users: []
 bootstrap__admin_sshkeys: []
