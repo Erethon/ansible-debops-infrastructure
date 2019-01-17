@@ -31,3 +31,7 @@ tramp
 
 #-- sftp configuration file
 sftp-config.json
+
+**/.terraform/*
+*.tfstate
+*.tfstate.*
