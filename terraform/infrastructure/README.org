@@ -1,0 +1,15 @@
+#+TITLE: Provision KVM hosts using Terraform
+
+* Requirements
+- [[https://www.terraform.io][Terraform]]
+- [[https://github.com/dmacvicar/terraform-provider-libvirt][Terraform libvirt provider]]
+- A remote host running =libvirtd=
+- =netcat-openbsd= package if the remote is a Debian host =asda=
+
+* Spawning hosts
+Create =terraform.tfvars= if necessary with your custom variables and then run:
+
+#+BEGIN_SRC sh
+  terraform init
+  terraform apply
+#+END_SRC
