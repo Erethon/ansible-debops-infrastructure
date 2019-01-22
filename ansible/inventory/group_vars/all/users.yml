@@ -10,14 +10,13 @@ users__dotfiles_default_map:
     repo: 'https://github.com/erethon/dotfiles.git'
 
 users__accounts:
-  - name: 'dgrig'
+  - name: 'tsironis'
     state: present
-    group: 'dgrig'
+    group: 'tsironis'
     groups: ['admins']
     append: True
     gid: 1005
     uid: 1005
     shell: '/usr/bin/zsh'
     openbsdshell: '/usr/local/bin/zsh'
-    sshkeys: [ 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDb/e7O6zcnEhaGz2JyzWCP7rWCCO0ZWwZvHeSYtQ6D384ZssDFupvoEIhVvPnuYbl3/jzXN69D/gm2w95hv82swUOvSbOhxhqga5HEZh5doC2RjAIchOaAqSOKPKQfaSZroZ+l+eUtcm8I4L6+xdUtSMaNndHQwWa2mllhZ21jrF6msublVuvy/ATjwHLdLd1MAORoYXKja84cejj0cQdVbyv36vqQmBeuU87//4mw45/IIpef3t6UjGjTAyUVGih2LQdX0Y4rghFwt1pc1x4oQxp4hThCQFYikTUtAw1CLFRjfnaU1KyCTc9akV6rf0NowChsENj1TvczTQg9tjlHA28rhpP6W2gN9buHzU/tG13pkBC/0PLmUtN7U95nAPNEYbjxQAbGKU9/lWICU0EEYoHFb+qhRiCdM0fek/9jj0F84ur4yWDQ9xtJKAg/mtNF3VyFbV86pmXnlTVdCzeW8eIU6BHOtc29i5BIXPUp9A2jELSY3FraTF2a7c2WCO6L43sJRwKl6U78QGpSHXSUN+fJIgK1MrvjEtoKRKHMeVdTtkqhabQqySaDl92PH6cVFHrLMhCB0YG5HFdsWoS+KxrRpCA4y9709+tNq5ulqgw/eD7RPbDP1SmHOEHSowF3A8DhfL3Sw1xoHQsr+/ghUFWvoylr+knDf+/PM0UCbw==' ]
-    forward: [ 'abuse@erethon.com' ]
+    sshkeys: [ 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDIuwVLDASGrbHpw49LWj4hIwG2SCiaYaUVxqyzIk5LU0pmzfLSPfbwhs88IKqtz3V2TopqdlveLhLSeSlwIsyd+XddsvFmcwOojxzdD508DahVnrb/twCQQ2eU/Y9achNqUjjz2aqG/xfxPzCUn5NeZSb84gXxe3jRqN0dZc+TS5i6hsGGYwrZER9tjeXYuRD9867+rvUDJ8XybwQ9UG6yDc6fDyri5AoJcWYZ/YYXPM1qswTgpcwY6vktSDShgb4ORvOROEOoa9N+h1G9zu4bEz/egq+brZ/beRbtHTxsMD4bHD3vdad6eXRDLZU74xFq84WydcBuonYIfqWZGQFuoszjtWxxaShi4qswLExEMnNZmIGNJgI4myTitihj4avllleDM0kVkpcrWI0/lsUy/a8HLpURijzzfRhusxRevTijtb9dMvPNPb+YsKs/G44OvLxKAuf8ZyfL+Zdnu/oJkJCblSjPYKV77KV8vUE8Z6BMcMxhMPrs4e5N+qJbPxwxLq8/quFFLZnpXlTaDDa3JONJ7r60TGhXIIAjEYcx3uw3lYIk0T01wdRQKhuKt0yNHT2u2cYkb21eEKpCvC6U6a6fvU7JrMO0iYRC5RE+KCgiggcoYPvak62BFiHLUB5yw6wEPQ9wb1p+shnPkBDPsOilDafEB8/XifSL7r83Mw== tsironis.dimitris@gmail.com' ]
