@@ -1,3 +1,0 @@
----
-
-etherpad__mysql_root_password: '{{ lookup("password", secret + "/credentials/etherpad.erethon.com/mysql/password") }}'

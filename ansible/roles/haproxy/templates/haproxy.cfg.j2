@@ -28,18 +28,6 @@ defaults
     errorfile 503 /etc/haproxy/errors/503.http
     errorfile 504 /etc/haproxy/errors/504.http
 
-userlist buildbotusers
-    user {{ buildbot__username }} password {{ buildbot__password }}
-
-frontend prosody_muc
-    bind {{ prosody__public_ip }}:5269
-    mode tcp
-    default_backend prosody_muc
-
-backend prosody_muc
-    mode tcp
-    server prosody_muc {{ prosody__private_ip }}:5269
-
 frontend eighty
     bind *:80
     mode http
@@ -52,33 +40,17 @@ frontend ssl
     http-request set-header X-Forwarded-Proto https if { ssl_fc }
 
     use_backend local if { url_beg /.well-known }
-    use_backend plothopes if { hdr(host) -i plothopes.com -i www.plothopes.com }
-    use_backend f.erethon.com if { hdr(host) -i f.erethon.com }
-    use_backend grafana.erethon.com if { hdr(host) -i grafana.erethon.com }
-    use_backend static if { hdr(host) -i capitalism.erethon.com -i hacked.erethon.com -i erethon.com -i www.erethon.com -i blog.erethon.com -i about.erethon.com -i git.erethon.com }
-    use_backend buildbot if { hdr(host) -i buildbot.erethon.com }
+    use_backend grafana.dtsironis.net if { hdr(host) -i grafana.dtsironis.net }
+    use_backend static if { hdr(host) -i capitalism.dtsironis.net -i hacked.dtsironis.net -i dtsironis.net -i www.dtsironis.net }
+    use_backend buildbot if { hdr(host) -i buildbot.dtsironis.net }
 
-backend plothopes
+backend grafana.dtsironis.net
     mode http
-    server plothopes {{ plothopes__private_ip }}:{{ plothopes__port }} 
-
-backend f.erethon.com
-    mode http
-    server f.erethon.com {{ files__private_ip }}:{{ files__port }} 
-
-backend grafana.erethon.com
-    mode http
-    server grafana.erethon.com {{ grafana__private_ip }}:{{ grafana__port }} 
+    server grafana.dtsironis.net {{ grafana__private_ip }}:{{ grafana__port }} 
 
 backend static
     mode http
     server webd {{ static__private_ip }}:80
-
-backend buildbot
-    mode http
-    acl authbuildbotusers http_auth(buildbotusers)
-    http-request auth realm buildbotrealm if !authbuildbotusers
-    server obsd001 {{ buildbot__private_ip }}:8010
 
 backend local
     mode http
