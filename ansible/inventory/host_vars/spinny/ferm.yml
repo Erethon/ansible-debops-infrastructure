@@ -30,6 +30,16 @@ ferm__host_rules:
     comment: 'Forward traffic from OpenVPN to VMs'
 
   - type: 'accept'
+    filename: 'devnet'
+    name: 'devnet'
+    table: 'filter'
+    chain: 'FORWARD'
+    domain: 'ip'
+    interface_present: 'tun0'
+    outerface_present: 'virbr1'
+    comment: 'Forward traffic from OpenVPN to devnet VMs'
+
+  - type: 'accept'
     filename: 'vmnet_public'
     name: 'vmnet_public'
     table: 'filter'
@@ -38,6 +48,16 @@ ferm__host_rules:
     interface_present: 'virbr0'
     saddr: '192.168.122.0/24'
     comment: 'Forward traffic from VMs to the internet'
+
+  - type: 'accept'
+    filename: 'devnet_public'
+    name: 'devnet_public'
+    table: 'filter'
+    chain: 'FORWARD'
+    domain: 'ip'
+    interface_present: 'virbr1'
+    saddr: '192.168.199.0/24'
+    comment: 'Forward traffic from devnet VMs to the internet'
 
   - type: 'custom'
     filename: 'vmnet_nat'
