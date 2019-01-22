@@ -23,8 +23,5 @@
   with_items:
     - capitalism
     - hacked
-    - erethon
-    - blog
-    - about.erethon.com
-    - git.erethon.com
+    - dtsironis
   notify: Restart httpd

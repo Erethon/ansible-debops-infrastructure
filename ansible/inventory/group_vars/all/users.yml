@@ -3,11 +3,11 @@
 users__enabled: True
 
 users__dotfiles_enabled: True
-users__dotfiles_name: 'erethon'
+users__dotfiles_name: 'tsironis'
 
 users__dotfiles_default_map:
-  'erethon':
-    repo: 'https://github.com/erethon/dotfiles.git'
+  'tsironis':
+    repo: 'https://github.com/tsironis/dotfiles.git'
 
 users__accounts:
   - name: 'tsironis'

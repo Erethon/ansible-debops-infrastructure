@@ -1,7 +1,3 @@
 ---
 
-monit_mail_servers:
-  - host: 'mail.erethon.com'
-    port: 587
-
 monit_fs_percentage: 75
