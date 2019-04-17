@@ -35,3 +35,4 @@ sftp-config.json
 **/.terraform/*
 *.tfstate
 *.tfstate.*
+*terraform.tfvars
