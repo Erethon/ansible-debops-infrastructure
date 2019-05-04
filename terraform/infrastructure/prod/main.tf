@@ -10,6 +10,13 @@ resource "libvirt_network" "production_network" {
   bridge    = "virbr2"
 }
 
+resource "libvirt_volume" "debian_prometheus_disk" {
+  name   = "debian_prometheus_disk"
+  pool   = "${var.libvirt_storage_pool}"
+  format = "qcow2"
+  size   = 10737418240
+}
+
 resource "libvirt_volume" "debian_container_disk" {
   name   = "debian_container"
   pool   = "${var.libvirt_storage_pool}"
@@ -22,6 +29,31 @@ resource "libvirt_volume" "debian_matrix_disk" {
   pool   = "${var.libvirt_storage_pool}"
   format = "qcow2"
   size   = 21474836480
+}
+
+resource "libvirt_domain" "debian_prometheus_domain" {
+  name      = "debian_prometheus"
+  memory    = "1024"
+  vcpu      = 2
+  autostart = "true"
+
+  boot_device {
+    dev = ["hd"]
+  }
+
+  disk {
+    volume_id = "${libvirt_volume.debian_prometheus_disk.id}"
+  }
+
+  network_interface {
+    network_id = "${libvirt_network.production_network.id}"
+    addresses  = ["192.168.198.3"]
+  }
+
+  graphics {
+    type        = "spice"
+    listen_type = "none"
+  }
 }
 
 resource "libvirt_domain" "debian_container_domain" {
