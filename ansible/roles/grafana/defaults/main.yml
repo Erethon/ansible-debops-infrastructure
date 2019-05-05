@@ -1,0 +1,18 @@
+---
+
+grafana__settings:
+  - section: analytics
+    option: reporting_enabled
+    value: false
+  - section: analytics
+    option: check_for_updates
+    value: false
+  - section: security
+    option: disable_gravatar
+    value: true
+  - section: users
+    option: allow_sign_up
+    value: false
+  - section: explore
+    option: enabled
+    value: false

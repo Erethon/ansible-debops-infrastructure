@@ -1,0 +1,16 @@
+---
+
+- name: Configure Grafana
+  ini_file:
+    path: /etc/grafana/grafana.ini
+    backup: yes
+    section: "{{ item.section }}"
+    option: "{{ item.option }}"
+    value: "{{ item.value }}"
+  loop: "{{ grafana__settings }}"
+
+- name: Enable and restart Grafana service
+  systemd:
+    name: grafana-server
+    enabled: yes
+    state: restarted
