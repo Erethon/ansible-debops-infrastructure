@@ -1,0 +1,5 @@
+---
+
+postgresql_server__upstream: True
+postgresql_server__autopostgresqlbackup: False
+postgresql_server__auto_backup: False
