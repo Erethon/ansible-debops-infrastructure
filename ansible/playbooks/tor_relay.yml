@@ -1,0 +1,16 @@
+---
+- hosts: tor_relay
+  become: True
+
+  environment: '{{ inventory__environment | d({})
+                   | combine(inventory__group_environment | d({}))
+                   | combine(inventory__host_environment  | d({})) }}'
+
+  roles:
+
+    - role: debops.secret
+
+    - role: debops.ferm
+      tags: [ 'role::ferm' ]
+
+    - role: tor_relay

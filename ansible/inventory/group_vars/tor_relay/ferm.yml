@@ -1,0 +1,11 @@
+---
+
+ferm__group_rules:
+  - type: 'accept'
+    filename: 'tor'
+    name: 'tor'
+    table: 'filter'
+    chain: 'INPUT'
+    dport: ['{{ tor__ORPort }}']
+    protocol: 'tcp'
+    domain: 'ip'

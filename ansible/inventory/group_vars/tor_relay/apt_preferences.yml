@@ -1,0 +1,5 @@
+---
+
+apt_preferences__group_list:
+  - package: 'tor'
+    backports: ['stretch']

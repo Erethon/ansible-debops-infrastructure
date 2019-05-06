@@ -1,0 +1,15 @@
+---
+
+- name: Configure tor daemon
+  template:
+    src: torrc.j2
+    dest: /etc/tor/torrc
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Enable and restart tor daemon
+  systemd:
+    name: tor
+    enabled: yes
+    state: restarted

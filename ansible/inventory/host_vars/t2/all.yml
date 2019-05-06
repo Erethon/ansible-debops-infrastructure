@@ -1,0 +1,3 @@
+---
+
+tor__nickname: '{{ lookup("password", secret + "/credentials/t2/tor/nickname") }}'
