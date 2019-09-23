@@ -5,7 +5,7 @@ provider "libvirt" {
 resource "libvirt_network" "production_network" {
   name      = "production_network"
   mode      = "nat"
-  addresses = "${var.libvirt_cidr}"
+  addresses = ["${var.libvirt_cidr}"]
   autostart = true
   bridge    = "virbr2"
 }
@@ -47,7 +47,7 @@ resource "libvirt_domain" "debian_prometheus_domain" {
 
   network_interface {
     network_id = "${libvirt_network.production_network.id}"
-    addresses  = ["192.168.198.3"]
+    addresses  = [cidrhost("${var.libvirt_cidr}", 3)]
   }
 
   graphics {
@@ -72,7 +72,7 @@ resource "libvirt_domain" "debian_container_domain" {
 
   network_interface {
     network_id = "${libvirt_network.production_network.id}"
-    addresses  = ["192.168.198.4"]
+    addresses  = [cidrhost("${var.libvirt_cidr}", 4)]
   }
 
   graphics {
@@ -97,7 +97,7 @@ resource "libvirt_domain" "debian_matrix_domain" {
 
   network_interface {
     network_id = "${libvirt_network.production_network.id}"
-    addresses  = ["192.168.198.5"]
+    addresses  = [cidrhost("${var.libvirt_cidr}", 5)]
   }
 
   graphics {

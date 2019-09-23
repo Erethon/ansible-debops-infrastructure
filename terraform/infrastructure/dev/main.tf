@@ -5,7 +5,7 @@ provider "libvirt" {
 resource "libvirt_network" "dev_network" {
   name      = "dev_network"
   mode      = "nat"
-  addresses = "${var.libvirt_cidr}"
+  addresses = ["${var.libvirt_cidr}"]
   autostart = true
   bridge    = "virbr1"
 }
@@ -51,7 +51,7 @@ resource "libvirt_domain" "obsd_dev_domain" {
   }
   network_interface {
     network_id = "${libvirt_network.dev_network.id}"
-    addresses  = ["192.168.199.2"]
+    addresses  = [cidrhost("${var.libvirt_cidr}", 2)]
   }
   graphics {
     type        = "spice"
@@ -75,7 +75,7 @@ resource "libvirt_domain" "debian_dev_domain" {
 
   network_interface {
     network_id = "${libvirt_network.dev_network.id}"
-    addresses  = ["192.168.199.4"]
+    addresses  = [cidrhost("${var.libvirt_cidr}", 4)]
   }
 
   graphics {

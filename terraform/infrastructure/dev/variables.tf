@@ -10,7 +10,7 @@ variable "libvirt_storage_pool" {
 
 variable "libvirt_cidr" {
   description = "Network CIDR to use for VMs"
-  default     = ["192.168.199.0/24"]
+  default     = "192.168.199.0/24"
 }
 
 variable "openbsd_iso" {
