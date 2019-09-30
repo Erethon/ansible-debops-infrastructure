@@ -11,7 +11,7 @@ resource "libvirt_volume" "volume" {
   pool   = var.storage_pool
   format = var.volume_format
   size   = var.volume_size
-  base_volume_id = (var.volume_source == "" ? libvirt_volume.base_volume[0].id : null)
+  base_volume_id = (var.volume_source != "" ? libvirt_volume.base_volume[0].id : null)
 }
 
 resource "libvirt_domain" "libvirt_host" {
