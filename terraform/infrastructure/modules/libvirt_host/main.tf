@@ -14,6 +14,11 @@ resource "libvirt_volume" "volume" {
   base_volume_id = (var.volume_source != "" ? libvirt_volume.base_volume[0].id : null)
 }
 
+resource "random_pet" "random" {
+  count     = (var.cloudinit_template != "" ? 1 : 0)
+  separator = "_"
+}
+
 data "template_file" "user_data" {
   count    = (var.cloudinit_template != "" ? 1 : 0)
   template = var.cloudinit_template
@@ -21,8 +26,8 @@ data "template_file" "user_data" {
 
 resource "libvirt_cloudinit_disk" "cloud_init" {
   count     = (var.cloudinit_template != "" ? 1 : 0)
-  name      = "cloud-init.iso"
-  user_data = "${data.template_file.user_data[count.index].rendered}"
+  name      = "cloud-init-${random_pet.random[0].id}.iso"
+  user_data = data.template_file.user_data[count.index].rendered
 }
 
 resource "libvirt_domain" "libvirt_host" {
