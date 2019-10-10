@@ -1,6 +1,11 @@
+resource "random_pet" "random_volume" {
+  count     = (var.volume_source == "" ? 0 : 1)
+  separator = "_"
+}
+
 resource "libvirt_volume" "base_volume" {
   count  = (var.volume_source == "" ? 0 : 1)
-  name   = "base_debian_10_image"
+  name   = "base_volume_${random_pet.random_volume[0].id}"
   pool   = var.storage_pool
   format = var.volume_format
   source = var.volume_source
