@@ -1,22 +1,10 @@
-resource "random_pet" "random_volume" {
-  count     = (var.volume_source == "" ? 0 : 1)
-  separator = "_"
-}
-
-resource "libvirt_volume" "base_volume" {
-  count  = (var.volume_source == "" ? 0 : 1)
-  name   = "base_volume_${random_pet.random_volume[0].id}"
-  pool   = var.storage_pool
-  format = var.volume_format
-  source = var.volume_source
-}
-
 resource "libvirt_volume" "volume" {
+  count     = (var.volume_name != "" ? 1 : 0)
   name           = var.volume_name
   pool           = var.storage_pool
   format         = var.volume_format
   size           = var.volume_size
-  base_volume_id = (var.volume_source != "" ? libvirt_volume.base_volume[0].id : null)
+  base_volume_id = (var.base_volume_id != "" ? var.base_volume_id : null)
 }
 
 resource "random_pet" "random" {
@@ -46,8 +34,22 @@ resource "libvirt_domain" "libvirt_host" {
     dev = ["hd"]
   }
 
-  disk {
-    volume_id = libvirt_volume.volume.id
+  #disk {
+  #  volume_id = (libvirt_volume.volume[0].id != "" ? libvirt_volume.volume[0].id : null)
+  #}
+
+  #disk {
+  #  file = (var.iso != "" ? var.iso : null)
+  #  scsi = (var.iso != "" ? false : null)
+  #}
+
+  dynamic "disk" {
+    for_each = var.disks
+    iterator = disk
+    content {
+        #file = (disk.iso != "" ? disk.iso : null)
+        volume_id = (libvirt_volume.volume[0].id != "" ? libvirt_volume.volume[0].id : null)
+    }
   }
 
   network_interface {

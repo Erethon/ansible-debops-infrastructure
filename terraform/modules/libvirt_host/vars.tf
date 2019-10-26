@@ -37,6 +37,7 @@ variable "storage_pool" {
 
 variable "volume_name" {
   type = string
+  default = ""
 }
 
 variable "volume_size" {
@@ -57,4 +58,19 @@ variable "volume_source" {
 variable "cloudinit_template" {
   type    = string
   default = ""
+}
+
+variable "base_volume_id" {
+  type = string
+  default = ""
+}
+
+variable "iso" {
+  type = string
+  default = ""
+}
+
+variable "disks" {
+  type = list
+  default = []
 }
