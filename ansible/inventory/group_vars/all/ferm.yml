@@ -12,6 +12,6 @@ ferm__rules:
     table: 'filter'
     chain: 'INPUT'
     dport: [ 9100 ]
-    saddr: "{{ hostvars['prometheus_host'].ansible_host }}"
+    saddr: "{% if hostvars['prometheus_host'] is defined %} {{ hostvars['prometheus_host'].ansible_host }} {% else %} '127.0.0.1' {% endif %}"
     protocol: 'tcp'
     domain: 'ip'
