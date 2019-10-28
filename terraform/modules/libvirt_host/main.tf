@@ -21,6 +21,7 @@ resource "libvirt_cloudinit_disk" "cloud_init" {
   count     = (var.cloudinit_template != "" ? 1 : 0)
   name      = "cloud-init-${random_pet.random[0].id}.iso"
   user_data = data.template_file.user_data[count.index].rendered
+  pool      = var.storage_pool
 }
 
 resource "libvirt_domain" "libvirt_host" {

@@ -33,6 +33,7 @@ variable "host_autostart" {
 
 variable "storage_pool" {
   type = string
+  default = "default"
 }
 
 variable "volume_name" {
