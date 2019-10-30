@@ -19,3 +19,8 @@ variable "network_autostart" {
 variable "network_bridge_interface" {
   type = string
 }
+
+variable "network_dns_enabled" {
+  type = bool
+  default = true
+}
