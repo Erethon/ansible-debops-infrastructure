@@ -1,0 +1,7 @@
+---
+
+synapse__keyring__dependent_apt_keys:
+  - id: AAF9AE843A7584B5A3E4CD2BCF45A512DE2DA058
+    url: 'https://packages.matrix.org/debian/matrix-org-archive-keyring.gpg'
+    repo: 'deb https://packages.matrix.org/debian/ {{ ansible_distribution_release }} main'
+    state: 'present'
