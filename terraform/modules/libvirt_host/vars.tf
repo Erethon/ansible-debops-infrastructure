@@ -56,9 +56,19 @@ variable "volume_source" {
   default = ""
 }
 
-variable "cloudinit_template" {
+variable "cloudinit_user_template" {
   type    = string
   default = ""
+}
+
+variable "enable_cloud_init" {
+  type = bool
+  default = false
+}
+
+variable "cloudinit_nameservers" {
+  type = list
+  default = ["9.9.9.9"]
 }
 
 variable "base_volume_id" {

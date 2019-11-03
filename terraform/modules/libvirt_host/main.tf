@@ -8,20 +8,22 @@ resource "libvirt_volume" "volume" {
 }
 
 resource "random_pet" "random" {
-  count     = (var.cloudinit_template != "" ? 1 : 0)
+  count     = (var.cloudinit_user_template != "" ? 1 : 0)
   separator = "_"
 }
 
-data "template_file" "user_data" {
-  count    = (var.cloudinit_template != "" ? 1 : 0)
-  template = var.cloudinit_template
-}
-
 resource "libvirt_cloudinit_disk" "cloud_init" {
-  count     = (var.cloudinit_template != "" ? 1 : 0)
+  count     = (var.enable_cloud_init == true ? 1 : 0)
   name      = "cloud-init-${random_pet.random[0].id}.iso"
-  user_data = data.template_file.user_data[count.index].rendered
   pool      = var.storage_pool
+  user_data = templatefile("${path.module}/user_template.yml", {
+    extra_lines = var.cloudinit_user_template
+  })
+  network_config = templatefile("${path.module}/network_template.yml", {
+    gateway = cidrhost(var.network_cidr, 1)
+    ip_address = "${cidrhost(var.network_cidr, var.network_host)}/${split("/", var.network_cidr)[1]}"
+    nameservers = var.cloudinit_nameservers
+  })
 }
 
 resource "libvirt_domain" "libvirt_host" {
@@ -29,7 +31,7 @@ resource "libvirt_domain" "libvirt_host" {
   memory    = var.host_memory
   vcpu      = var.host_vcpu
   autostart = var.host_autostart
-  cloudinit = (var.cloudinit_template != "" ? libvirt_cloudinit_disk.cloud_init[0].id : null)
+  cloudinit = (var.cloudinit_user_template != "" ? libvirt_cloudinit_disk.cloud_init[0].id : null)
 
   boot_device {
     dev = ["hd"]
