@@ -1,0 +1,6 @@
+nginx__servers:
+  - name: riot.dgrig.com
+    listen:
+      - "{{ ansible_host }}:80"
+    acme: False
+    redirect_to_ssl: False
