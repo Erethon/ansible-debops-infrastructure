@@ -1,0 +1,21 @@
+---
+
+riot__signing_key: https://packages.riot.im/riot-release-key.asc
+
+riot__release_version: "1.5.0"
+
+riot__release_checksum: "c39c4ad3ad876426d9b99d3924468bb69cbc8e9de00ea2fc22a086c94b7ee079850897d6920c215c37d0fa25243098c04bd4588c8cd71385d01015253834f660"
+
+riot__release_url: "https://github.com/vector-im/riot-web/releases/download/v{{ riot__release_version }}/riot-v{{ riot__release_version }}.tar.gz"
+
+riot__release_signature_url: "https://github.com/vector-im/riot-web/releases/download/v{{ riot__release_version }}/riot-v{{ riot__release_version }}.tar.gz.asc"
+
+riot__deploy_directory: ""
+
+riot__matrix_homeserver: "https://matrix.org"
+
+riot__matrix_server_name: "matrix.org"
+
+riot__matrix_identity_server: "https://vector.im"
+
+riot__brand: "Riot"

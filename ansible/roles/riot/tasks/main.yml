@@ -1,0 +1,36 @@
+---
+
+- name: Download Riot GPG key
+  get_url:
+    url: "{{ riot__signing_key }}"
+    dest: /tmp/riot-release-key.asc
+
+- name: Import Riot GPG key
+  shell: gpg --import /tmp/riot-release-key.asc
+
+- name: Download Riot release
+  get_url:
+    url: "{{ riot__release_url }}"
+    dest: /tmp/
+    checksum: "sha512:{{ riot__release_checksum }}"
+
+- name: Download Riot signature file
+  get_url:
+    url: "{{ riot__release_signature_url }}"
+    dest: /tmp/
+
+- name: Verify Riot release with signature file
+  shell: "gpg --verify /tmp/riot-v{{ riot__release_version }}.tar.gz.asc /tmp/riot-v{{ riot__release_version }}.tar.gz"
+
+- name: Extract and deploy Riot to the webserver directory
+  unarchive:
+    src: /tmp/riot-v{{ riot__release_version }}.tar.gz
+    dest: "{{ riot__deploy_directory }}"
+    remote_src: yes
+    extra_opts: [--strip-components=1]
+
+- name: Configure Riot
+  template:
+    src: config.json
+    dest: "{{ riot__deploy_directory }}/config.json"
+  tags: ["riot::configure"]
