@@ -22,6 +22,8 @@ module "production_matrix" {
   source = "../../modules/libvirt_host"
 
   host_name = "production_matrix"
+  host_memory = "1536"
+  host_vcpu = 2
   storage_pool = var.libvirt_storage_pool
   volume_name = "production_matrix_volume"
   base_volume_id = libvirt_volume.base_debian_volume.id
