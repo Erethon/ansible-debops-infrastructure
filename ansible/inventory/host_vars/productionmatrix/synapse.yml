@@ -1,0 +1,10 @@
+---
+
+synapse__database_password: '{{ lookup("password", secret + "/credentials/productionmatrix/postgresql/password") }}'
+
+synapse__server_name: "erethon.com"
+
+synapse__bind_addresses: ['0.0.0.0']
+synapse__metrics_bind_addresses: ['0.0.0.0']
+synapse__port: 8008
+synapse__metrics_port: 9666
