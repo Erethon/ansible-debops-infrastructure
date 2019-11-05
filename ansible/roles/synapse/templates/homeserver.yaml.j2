@@ -1,0 +1,68 @@
+pid_file: "/var/run/matrix-synapse.pid"
+
+allow_public_rooms_without_auth: false
+
+allow_public_rooms_over_federation: false
+
+federation_ip_range_blacklist:
+  - '127.0.0.0/8'
+  - '10.0.0.0/8'
+  - '172.16.0.0/12'
+  - '192.168.0.0/16'
+  - '100.64.0.0/10'
+  - '169.254.0.0/16'
+  - '::1/128'
+  - 'fe80::/64'
+  - 'fc00::/7'
+
+listeners:
+  - port: {{ synapse__port }}
+    tls: false
+    type: http
+    x_forwarded: true
+    bind_addresses: [{{"'" + (synapse__bind_addresses)|join("', ") + "'"}}]
+    resources:
+      - names: [client, federation]
+        compress: true
+
+  - port: {{ synapse__metrics_port }}
+    type: metrics
+    bind_addresses: [{{"'" + (synapse__metrics_bind_addresses)|join("', '") + "'"}}]
+
+user_ips_max_age: "{{ synapse__user_ips_max_age }}"
+
+database:
+  name: "psycopg2"
+  args:
+    user: "{{ synapse__database_user }}"
+    database: "{{ synapse__database }}"
+    password: "{{ synapse__database_password }}"
+    host: "{{ synapse__database_host }}"
+    cp_min: 5
+    cp_max: 10
+
+log_config: "/etc/matrix-synapse/log.yaml"
+
+media_store_path: "/var/lib/matrix-synapse/media"
+
+uploads_path: "/var/lib/matrix-synapse/uploads"
+
+max_upload_size: "{{ synapse__max_upload_size }}"
+
+dynamic_thumbnails: false
+
+enable_registration: "{{ synapse__enable_registration }}"
+
+enable_3pid_lookup: "{{ synapse__enable_3pid_lookup }}"
+
+allow_guest_access: false
+
+enable_metrics: true
+
+signing_key_path: "/etc/matrix-synapse/homeserver.signing.key"
+
+trusted_key_servers:
+  - server_name: "matrix.org"
+
+password_config:
+   enabled: true

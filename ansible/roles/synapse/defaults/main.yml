@@ -5,3 +5,23 @@ synapse__keyring__dependent_apt_keys:
     url: 'https://packages.matrix.org/debian/matrix-org-archive-keyring.gpg'
     repo: 'deb https://packages.matrix.org/debian/ {{ ansible_distribution_release }} main'
     state: 'present'
+
+synapse__port: 8008
+
+synapse__bind_addresses: ['127.0.0.1']
+
+synapse__metrics_port: 9666
+
+synapse__metrics_bind_addresses: ['127.0.0.1']
+
+synapse__user_ips_max_age: '1d'
+
+synapse__max_upload_size: '10M'
+
+synapse__database: 'synapse'
+synapse__database_user: 'synapse'
+synapse__database_password: ''
+synapse__database_host: '127.0.0.1'
+
+synapse__enable_registration: 'false'
+synapse__enable_3pid_lookup: 'false'

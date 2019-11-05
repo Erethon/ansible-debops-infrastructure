@@ -1,7 +1,7 @@
 ---
 
 - name: Manage Synapse server (Matrix)
-  hosts: [ 'matrix' ]
+  hosts: [ 'synapse' ]
   become: True
 
   environment: '{{ inventory__environment | d({})
@@ -9,6 +9,8 @@
                    | combine(inventory__host_environment  | d({})) }}'
 
   roles:
+
+    - role: debops.secret
 
     - role: debops.keyring
       tags: [ 'role::keyring', 'skip::keyring', 'role::nginx' ]

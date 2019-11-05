@@ -1,0 +1,11 @@
+---
+
+ferm__group_rules:
+  - type: 'accept'
+    filename: 'Synapse'
+    name: 'synapse'
+    table: 'filter'
+    chain: 'INPUT'
+    dport: ['{{ synapse__port }}', '{{ synapse__metrics_port }}']
+    protocol: 'tcp'
+    domain: 'ip'
