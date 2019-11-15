@@ -27,4 +27,5 @@
     - blog
     - about.erethon.com
     - git.erethon.com
+    - dgrig.com
   notify: Restart httpd
