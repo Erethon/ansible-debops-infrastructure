@@ -32,3 +32,13 @@
     key: "{{ item.sshkeys[0] }}"
   with_items:
   - "{{ users__accounts }}"
+
+- name: Add management user to doas.conf
+  lineinfile:
+    path: /etc/doas.conf
+    state: present
+    line: "permit nopass keepenv setenv { HOME } {{ item.name }} as root"
+    create: yes
+  with_items:
+  - "{{ users__accounts }}"
+  when: item.doas == True
