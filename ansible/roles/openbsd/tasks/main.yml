@@ -7,10 +7,8 @@
 
 - name: Install packages
   openbsd_pkg:
-    name: "{{ item }}"
+    name: "{{ openbsd__packages }}"
     state: present
-  with_items:
-  - "{{ openbsd__packages }}"
 
 - name: Create groups
   group:
