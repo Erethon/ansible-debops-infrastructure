@@ -1,0 +1,12 @@
+---
+
+ferm__host_rules:
+  - type: 'accept'
+    filename: 'grafana'
+    name: 'grafana'
+    table: 'filter'
+    chain: 'INPUT'
+    dport: [ 3000 ]
+    protocol: 'tcp'
+    saddr: '192.168.199.1'
+    domain: 'ip'
