@@ -37,3 +37,22 @@ runcmd:
   - echo 'source /etc/network/interfaces.d/*' > /etc/network/interfaces
 EOF
 }
+
+module "production_pg_matrix" {
+  source = "../../modules/libvirt_host"
+
+  host_name = "production_pg_matrix"
+  host_memory = "1024"
+  storage_pool = var.libvirt_storage_pool
+  volume_name = "production_pg_matrix_volume"
+  base_volume_id = libvirt_volume.base_debian_volume.id
+  disks = [{"volume_id": libvirt_volume.base_debian_volume.id}]
+  network_id = module.dev_network.id
+  network_cidr = module.dev_network.cidr
+  network_host = "3"
+  enable_cloud_init = true
+  cloudinit_user_template = <<EOF
+runcmd:
+  - echo 'source /etc/network/interfaces.d/*' > /etc/network/interfaces
+EOF
+}
