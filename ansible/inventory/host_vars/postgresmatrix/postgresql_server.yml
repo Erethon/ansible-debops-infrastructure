@@ -1,0 +1,23 @@
+---
+
+postgresql_server__listen_addresses: [ "{{ hostvars[inventory_hostname].ansible_host }}" ]
+postgresql_server__allow: [ "{{ hostvars['productionmatrix'].ansible_host }}" ]
+
+postgresql_server__cluster_main:
+  name: 'main'
+  port: '5432'
+  shared_buffers: "256MB"
+  work_mem: "655kB"
+  maintenance_work_mem: "64MB"
+  effective_io_concurrency: 200
+  wal_buffers: "7864kB"
+  checkpoint_completion_target: 0.7
+  random_page_cost: 1.1
+  effective_cache_size: "768MB"
+
+  hba:
+    - type: 'host'
+      database: 'synapse'
+      user: 'synapse'
+      address: [ "{{ hostvars['productionmatrix'].ansible_host }}/32" ]
+      method: 'md5'
