@@ -1,0 +1,6 @@
+---
+
+sysctl__parameters:
+  - name: 'memory'
+    options:
+      - 'vm.swappiness': 1
