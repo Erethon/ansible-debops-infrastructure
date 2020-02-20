@@ -1,7 +1,0 @@
----
-
-docker__upstream: True
-docker__tcp: False
-docker__packages: ['python-docker']
-
-docker__volumes_location: '/data/volumes'
