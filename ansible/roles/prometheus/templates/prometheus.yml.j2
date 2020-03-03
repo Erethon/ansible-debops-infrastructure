@@ -32,3 +32,10 @@ scrape_configs:
       - target_label: __address__
         replacement: 127.0.0.1:9115
 {% endif %}
+
+{% if prometheus__synapse_target is defined %}
+  - job_name: 'synapse'
+    metrics_path: '/_synapse/metrics'
+    static_configs:
+      - targets: ['{{ prometheus__synapse_target }}:9666']
+{% endif %}
