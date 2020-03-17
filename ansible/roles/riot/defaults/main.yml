@@ -2,9 +2,9 @@
 
 riot__signing_key: https://packages.riot.im/riot-release-key.asc
 
-riot__release_version: "1.5.12"
+riot__release_version: "1.5.13"
 
-riot__release_checksum: "805cbbab4f82acd540445aaa9ac8e349927281b601df4492ff3950d7f43b2a5da8c2921919f79295dce0e310bfbcebb7e22891aa571b60508fc2cbfe230ecebb"
+riot__release_checksum: "4e6e0c08e983ef33b897d1c4b6fda819c0ee21235bfa5a3448a100f3b336009a2206b99581c2c4a95eaae741e08329033a1c0b74b7452fd42edffd791a223845"
 
 riot__release_url: "https://github.com/vector-im/riot-web/releases/download/v{{ riot__release_version }}/riot-v{{ riot__release_version }}.tar.gz"
 
