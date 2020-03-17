@@ -5,3 +5,14 @@ postgresql_server__autopostgresqlbackup: False
 postgresql_server__auto_backup: False
 
 postgresql_server__packages: ['prometheus-postgres-exporter']
+
+ferm__group_rules:
+  - name: 'postgres_exporter'
+    type: 'accept'
+    filename: 'postgres_exporter'
+    table: 'filter'
+    chain: 'INPUT'
+    dport: [ 9187 ]
+    saddr: "{% if hostvars['prometheus_host'] is defined %} {{ hostvars['prometheus_host'].ansible_host }} {% else %} '127.0.0.1' {% endif %}"
+    protocol: 'tcp'
+    domain: 'ip'

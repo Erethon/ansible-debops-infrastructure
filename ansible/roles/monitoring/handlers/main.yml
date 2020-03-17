@@ -1,0 +1,12 @@
+---
+
+- name: Restart node exporter
+  systemd:
+    name: prometheus-postgres-exporter
+    state: restarted
+
+- name: Restart postgres exporter
+  systemd:
+    name: prometheus-postgres-exporter
+    state: restarted
+    daemon_reload: yes

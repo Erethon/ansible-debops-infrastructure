@@ -1,9 +1,31 @@
 ---
 
-- name: Copy systemd environment file
+- name: Copy systemd node exporter environment file
   template:
     src: sysconfig.node_exporter.j2
     dest: /etc/default/prometheus-node-exporter
     owner: root
     group: root
     mode: 0644
+  notify:
+    - Restart node exporter
+
+- name: Copy systemd postgres exporter environment file
+  template:
+    src: sysconfig.postgres_exporter.j2
+    dest: /etc/default/prometheus-postgres-exporter
+    owner: root
+    group: root
+    mode: 0644
+  when: inventory_hostname in groups.debops_service_postgresql_server
+  notify:
+    - Restart postgres exporter
+
+- name: Run postgres exporter as the postgres user
+  lineinfile:
+    path: /etc/systemd/system/multi-user.target.wants/prometheus-postgres-exporter.service
+    regexp: '^User= '
+    line: User=postgres
+  when: inventory_hostname in groups.debops_service_postgresql_server
+  notify:
+    - Restart postgres exporter
