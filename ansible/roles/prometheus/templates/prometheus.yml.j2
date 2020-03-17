@@ -33,6 +33,15 @@ scrape_configs:
         replacement: 127.0.0.1:9115
 {% endif %}
 
+{% if prometheus__postgres_targets is defined %}
+  - job_name: 'postgres'
+    static_configs:
+      - targets:
+{% for target in prometheus__postgres_targets %}
+        - '{{ target }}:9187'
+{% endfor %}
+{% endif %}
+
 {% if prometheus__synapse_target is defined %}
   - job_name: 'synapse'
     metrics_path: '/_synapse/metrics'
