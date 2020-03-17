@@ -7,4 +7,5 @@ prometheus__http_targets: ['https://erethon.com',
   'https://blog.erethon.com', 'https://grafana.erethon.com',
   'https://riot.dgrig.com', 'https://matrix.erethon.com',
   'https://plothopes.com', 'https://f.erethon.com']
+prometheus__postgres_targets: ['pgmatrix.int.erethon.com']
 prometheus__synapse_target: 'matrix.int.erethon.com'
