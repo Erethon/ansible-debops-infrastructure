@@ -48,3 +48,9 @@ scrape_configs:
     static_configs:
       - targets: ['{{ prometheus__synapse_target }}:9666']
 {% endif %}
+
+{% if prometheus__apcupsd_target is defined %}
+  - job_name: 'apcupsd'
+    static_configs:
+      - targets: ['{{ prometheus__apcupsd_target }}:9162']
+{% endif %}
