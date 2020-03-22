@@ -54,3 +54,10 @@ scrape_configs:
     static_configs:
       - targets: ['{{ prometheus__apcupsd_target }}:9162']
 {% endif %}
+
+{% if prometheus__dht_target is defined %}
+  - job_name: 'dht_environment'
+    metrics_path: '/'
+    static_configs:
+      - targets: ['{{ prometheus__dht_target }}:9222']
+{% endif %}
