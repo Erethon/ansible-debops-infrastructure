@@ -65,21 +65,6 @@ runcmd:
 EOF
 }
 
-module "dirty_openbsd_dev" {
-  source = "../../modules/libvirt_host"
-
-  host_name = "dirty_openbsd_dev"
-  host_memory = "1024"
-  host_vcpu = 2
-  storage_pool = var.libvirt_storage_pool
-  volume_name = "dirty_openbsd_dev"
-  base_volume_id = libvirt_volume.base_openbsd_volume.id
-  disks = [{"volume_id": libvirt_volume.base_openbsd_volume.id}]
-  network_id = module.ori_network.id
-  network_cidr = module.ori_network.cidr
-  network_host = "4"
-}
-
 module "xorg_enabled" {
   source = "../../modules/libvirt_host"
 
@@ -93,6 +78,26 @@ module "xorg_enabled" {
   network_id = module.ori_network.id
   network_cidr = module.ori_network.cidr
   network_host = "5"
+  enable_cloud_init = true
+  cloudinit_user_template = <<EOF
+runcmd:
+  - echo 'source /etc/network/interfaces.d/*' > /etc/network/interfaces
+EOF
+}
+
+module "nv_testing" {
+  source = "../../modules/libvirt_host"
+
+  host_name = "nc_testing"
+  host_memory = "1024"
+  host_vcpu = 1
+  storage_pool = var.libvirt_storage_pool
+  volume_name = "nv_testing"
+  base_volume_id = libvirt_volume.base_debian_volume.id
+  disks = [{"volume_id": libvirt_volume.base_debian_volume.id}]
+  network_id = module.ori_network.id
+  network_cidr = module.ori_network.cidr
+  network_host = "6"
   enable_cloud_init = true
   cloudinit_user_template = <<EOF
 runcmd:
