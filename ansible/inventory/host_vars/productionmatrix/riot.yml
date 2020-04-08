@@ -10,3 +10,5 @@ riot__matrix_homeserver: "https://matrix.erethon.com"
 riot__matrix_server_name: "erethon.com"
 
 riot__brand: "Erethon Riot"
+
+riot__jitsi_url: "jitsi.erethon.com"

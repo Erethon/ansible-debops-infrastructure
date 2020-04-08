@@ -19,3 +19,5 @@ riot__matrix_server_name: "matrix.org"
 riot__matrix_identity_server: "https://vector.im"
 
 riot__brand: "Riot"
+
+riot__jitsi_url: "jitsi.modular.im"
