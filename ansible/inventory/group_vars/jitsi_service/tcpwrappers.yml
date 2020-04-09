@@ -1,0 +1,4 @@
+---
+
+tcpwrappers__allow:
+  - daemon: 'nginx'

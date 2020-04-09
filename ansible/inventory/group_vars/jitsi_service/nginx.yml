@@ -1,0 +1,59 @@
+---
+
+nginx__servers:
+  - name: "{{ jitsi__hostname }}"
+    acme: True
+    redirect_to_ssl: True
+    root: /usr/share/jitsi-meet
+    options: |
+      ssi on;
+      ssi_types application/x-javascript application/javascript;
+
+    location_list:
+      - pattern: '= /config.js'
+        options: 'alias /etc/jitsi/meet/{{jitsi__hostname}}-config.js;'
+      - pattern: '= /external_api.js'
+        options: 'alias /usr/share/jitsi-meet/libs/external_api.min.js;'
+      - pattern: '~ ^/(libs|css|static|images|fonts|lang|sounds|connection_optimization|.well-known)/(.*)$'
+        options: |
+          add_header 'Access-Control-Allow-Origin' '*';
+          alias /usr/share/jitsi-meet/$1/$2;
+      - pattern: '= /http-bind'
+        options: |
+          proxy_pass      http://localhost:5280/http-bind;
+          proxy_set_header X-Forwarded-For $remote_addr;
+          proxy_set_header Host $http_host;
+      - pattern: '= /xmpp-websocket'
+        options: |
+          proxy_pass http://localhost:5280/xmpp-websocket;
+          proxy_http_version 1.1;
+          proxy_set_header Upgrade $http_upgrade;
+          proxy_set_header Connection "upgrade";
+          proxy_set_header Host $host;
+          tcp_nodelay on;
+      - pattern: '~ ^/([^/?&:''"]+)$'
+        options: 'try_files $uri @root_path;'
+      - pattern: '@root_path'
+        options: 'rewrite ^/(.*)$ / break;'
+      - pattern: '~ ^/([^/?&:''"]+)/config.js$'
+        options: |
+          set $subdomain "$1.";
+          set $subdir "$1/";
+          alias /etc/jitsi/meet/{{jitsi__hostname}}-config.js;
+      - pattern: '~ ^/([^/?&:i''"]+)/(.*)$'
+        options: |
+          set $subdomain "$1.";
+          set $subdir "$1/";
+          rewrite ^/([^/?&:'"]+)/(.*)$ /$2;
+      - pattern: '~ ^/([^/?&:''"]+)/http-bind'
+        options: |
+          set $subdomain "$1.";
+          set $subdir "$1/";
+          set $prefix "$1";
+          rewrite ^/(.*)$ /http-bind;
+      - pattern: '~ ^/([^/?&:''"]+)/xmpp-websocket'
+        options: |
+          set $subdomain "$1.";
+          set $subdir "$1/";
+          set $prefix "$1";
+          rewrite ^/(.*)$ /xmpp-websocket;

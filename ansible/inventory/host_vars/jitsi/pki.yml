@@ -1,0 +1,5 @@
+---
+
+pki_realms:
+  - name: 'jitsi.erethon.com'
+    acme: True

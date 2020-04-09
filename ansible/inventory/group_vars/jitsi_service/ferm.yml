@@ -1,0 +1,19 @@
+---
+
+ferm__group_rules:
+  - type: 'accept'
+    filename: 'jvb'
+    name: 'jvb'
+    table: 'filter'
+    chain: 'INPUT'
+    dport: ['10000']
+    protocol: 'udp'
+    domain: 'ip'
+  - type: 'accept'
+    filename: 'jvb-fallback'
+    name: 'jvb-fallback'
+    table: 'filter'
+    chain: 'INPUT'
+    dport: ['4443']
+    protocol: 'tcp'
+    domain: 'ip'

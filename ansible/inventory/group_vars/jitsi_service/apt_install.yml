@@ -1,0 +1,24 @@
+---
+
+apt_install__group_packages: ['jitsi-meet']
+apt_install__debconf:
+  - name: 'jitsi-meet-web-config'
+    question: 'jitsi-videobridge/jvb-hostname:'
+    value: '{{ jitsi__hostname }}'
+    vtype: string
+  - name: 'jitsi-meet-prosody'
+    question: 'jitsi-videobridge/jvb-hostname'
+    value: '{{ jitsi__hostname }}'
+    vtype: string
+  - name: 'jitsi-videobridge2'
+    question: 'jitsi-videobridge/jvb-hostname'
+    value: '{{ jitsi__hostname }}'
+    vtype: string
+  - name: 'jicofo'
+    question: 'jitsi-videobridge/jvb-hostname'
+    value: '{{ jitsi__hostname }}'
+    vtype: string
+  - name: 'jitsi-meet-web-config'
+    question: 'jitsi-meet/cert-choice'
+    value: "Generate a new self-signed certificate (You will later get a chance to obtain a Let's encrypt certificate)"
+    vtype: select
