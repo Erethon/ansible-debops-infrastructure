@@ -104,3 +104,23 @@ runcmd:
   - echo 'source /etc/network/interfaces.d/*' > /etc/network/interfaces
 EOF
 }
+
+module "rust_dev" {
+  source = "../../modules/libvirt_host"
+
+  host_name = "rust_dev"
+  host_memory = "1024"
+  host_vcpu = 2
+  storage_pool = var.libvirt_storage_pool
+  volume_name = "rust_dev"
+  base_volume_id = libvirt_volume.base_debian_volume.id
+  disks = [{"volume_id": libvirt_volume.base_debian_volume.id}]
+  network_id = module.ori_network.id
+  network_cidr = module.ori_network.cidr
+  network_host = "7"
+  enable_cloud_init = true
+  cloudinit_user_template = <<EOF
+runcmd:
+  - echo 'source /etc/network/interfaces.d/*' > /etc/network/interfaces
+EOF
+}
