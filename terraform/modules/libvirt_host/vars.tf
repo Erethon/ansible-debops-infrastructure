@@ -68,7 +68,7 @@ variable "enable_cloud_init" {
 
 variable "cloudinit_nameservers" {
   type = list
-  default = ["9.9.9.9"]
+  default = ["88.198.92.222"]
 }
 
 variable "base_volume_id" {
