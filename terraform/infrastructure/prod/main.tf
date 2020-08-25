@@ -31,31 +31,6 @@ resource "libvirt_volume" "debian_matrix_disk" {
   size   = 21474836480
 }
 
-resource "libvirt_domain" "debian_prometheus_domain" {
-  name      = "debian_prometheus"
-  memory    = "1024"
-  vcpu      = 2
-  autostart = "true"
-
-  boot_device {
-    dev = ["hd"]
-  }
-
-  disk {
-    volume_id = "${libvirt_volume.debian_prometheus_disk.id}"
-  }
-
-  network_interface {
-    network_id = "${libvirt_network.production_network.id}"
-    addresses  = [cidrhost("${var.libvirt_cidr}", 3)]
-  }
-
-  graphics {
-    type        = "spice"
-    listen_type = "none"
-  }
-}
-
 resource "libvirt_domain" "debian_container_domain" {
   name      = "debian_container"
   memory    = "1024"
@@ -73,31 +48,6 @@ resource "libvirt_domain" "debian_container_domain" {
   network_interface {
     network_id = "${libvirt_network.production_network.id}"
     addresses  = [cidrhost("${var.libvirt_cidr}", 4)]
-  }
-
-  graphics {
-    type        = "spice"
-    listen_type = "none"
-  }
-}
-
-resource "libvirt_domain" "debian_matrix_domain" {
-  name      = "debian_matrix"
-  memory    = "2048"
-  vcpu      = 2
-  autostart = "true"
-
-  boot_device {
-    dev = ["hd"]
-  }
-
-  disk {
-    volume_id = "${libvirt_volume.debian_matrix_disk.id}"
-  }
-
-  network_interface {
-    network_id = "${libvirt_network.production_network.id}"
-    addresses  = [cidrhost("${var.libvirt_cidr}", 5)]
   }
 
   graphics {
