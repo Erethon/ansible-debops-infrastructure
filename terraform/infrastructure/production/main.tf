@@ -1,5 +1,5 @@
 provider "libvirt" {
-  uri = "${var.libvirt_uri}"
+  uri = var.libvirt_uri
 }
 
 module "dev_network" {
