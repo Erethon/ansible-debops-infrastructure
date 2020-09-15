@@ -8,5 +8,5 @@
 
   roles:
 
-    - role: debops.secret
-    - role: riot
+    - role: secret
+    - role: element
