@@ -2,7 +2,7 @@
 
 - name: Download Riot GPG key
   get_url:
-    url: "{{ riot__signing_key }}"
+    url: "{{ element__signing_key }}"
     dest: /tmp/riot-release-key.asc
 
 - name: Import Riot GPG key
@@ -10,27 +10,27 @@
 
 - name: Download Riot release
   get_url:
-    url: "{{ riot__release_url }}"
+    url: "{{ element__release_url }}"
     dest: /tmp/
-    checksum: "sha512:{{ riot__release_checksum }}"
+    checksum: "sha512:{{ element__release_checksum }}"
 
 - name: Download Riot signature file
   get_url:
-    url: "{{ riot__release_signature_url }}"
+    url: "{{ element__release_signature_url }}"
     dest: /tmp/
 
 - name: Verify Riot release with signature file
-  shell: "gpg --verify /tmp/riot-v{{ riot__release_version }}.tar.gz.asc /tmp/riot-v{{ riot__release_version }}.tar.gz"
+  shell: "gpg --verify /tmp/riot-v{{ element__release_version }}.tar.gz.asc /tmp/riot-v{{ element__release_version }}.tar.gz"
 
 - name: Extract and deploy Riot to the webserver directory
   unarchive:
-    src: /tmp/riot-v{{ riot__release_version }}.tar.gz
-    dest: "{{ riot__deploy_directory }}"
+    src: /tmp/riot-v{{ element__release_version }}.tar.gz
+    dest: "{{ element__deploy_directory }}"
     remote_src: yes
     extra_opts: [--strip-components=1]
 
 - name: Configure Riot
   template:
     src: config.json
-    dest: "{{ riot__deploy_directory }}/config.json"
+    dest: "{{ element__deploy_directory }}/config.json"
   tags: ["riot::configure"]

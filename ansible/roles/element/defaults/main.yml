@@ -1,23 +1,23 @@
 ---
 
-riot__signing_key: https://packages.riot.im/riot-release-key.asc
+element__signing_key: https://packages.riot.im/riot-release-key.asc
 
-riot__release_version: "1.7.8"
+element__release_version: "1.7.8"
 
-riot__release_checksum: "c60fa34425516d860ab96dcf2d27008825b0a8533d0a576911be6dd5f73b06a5bf3a6a8a538496b7f3348e5f22cdc9adfe5b76c3eed49963cbb3fd728ce9daea"
+element__release_checksum: "c60fa34425516d860ab96dcf2d27008825b0a8533d0a576911be6dd5f73b06a5bf3a6a8a538496b7f3348e5f22cdc9adfe5b76c3eed49963cbb3fd728ce9daea"
 
-riot__release_url: "https://github.com/vector-im/element-web/releases/download/v{{ riot__release_version }}/riot-v{{ riot__release_version }}.tar.gz"
+element__release_url: "https://github.com/vector-im/element-web/releases/download/v{{ element__release_version }}/riot-v{{ element__release_version }}.tar.gz"
 
-riot__release_signature_url: "https://github.com/vector-im/element-web/releases/download/v{{ riot__release_version }}/riot-v{{ riot__release_version }}.tar.gz.asc"
+element__release_signature_url: "https://github.com/vector-im/element-web/releases/download/v{{ element__release_version }}/riot-v{{ element__release_version }}.tar.gz.asc"
 
-riot__deploy_directory: ""
+element__deploy_directory: ""
 
-riot__matrix_homeserver: "https://matrix.org"
+element__matrix_homeserver: "https://matrix.org"
 
-riot__matrix_server_name: "matrix.org"
+element__matrix_server_name: "matrix.org"
 
-riot__matrix_identity_server: "https://vector.im"
+element__matrix_identity_server: "https://vector.im"
 
-riot__brand: "Riot"
+element__brand: "Riot"
 
-riot__jitsi_url: "jitsi.modular.im"
+element__jitsi_url: "jitsi.modular.im"

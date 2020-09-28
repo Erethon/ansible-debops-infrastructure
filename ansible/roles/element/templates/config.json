@@ -1,18 +1,18 @@
 {
     "default_server_config": {
         "m.homeserver": {
-            "base_url": " {{ riot__matrix_homeserver | d('https://matrix.org') }}",
-            "server_name": "{{ riot__matrix_server_name | d('matrix.org') }}"
+            "base_url": " {{ element__matrix_homeserver | d('https://matrix.org') }}",
+            "server_name": "{{ element__matrix_server_name | d('matrix.org') }}"
         },
         "m.identity_server": {
-            "base_url": "{{ riot__matrix_identity_server | d('https://vector.im') }}"
+            "base_url": "{{ element__matrix_identity_server | d('https://vector.im') }}"
         }
     },
     "disable_custom_urls": false,
     "disable_guests": true,
     "disable_login_language_selector": false,
     "disable_3pid_login": false,
-    "brand": "{{ riot__brand | d('Riot')}}",
+    "brand": "{{ element__brand | d('Element')}}",
     "integrations_ui_url": "https://scalar.vector.im/",
     "integrations_rest_url": "https://scalar.vector.im/api",
     "integrations_widgets_urls": [
@@ -35,7 +35,7 @@
     "default_theme": "dark",
     "roomDirectory": {
         "servers": [
-         {% for server in riot__server_room_directory|d([]) %}
+         {% for server in element__server_room_directory|d([]) %}
             "{{ server }}",
          {% endfor %}
             "matrix.org"
@@ -50,6 +50,6 @@
         "breadcrumbs": true
     },
     "jitsi": {
-        "preferredDomain": "{{ riot__jitsi_url }}"
+        "preferredDomain": "{{ element__jitsi_url }}"
     }
 }
