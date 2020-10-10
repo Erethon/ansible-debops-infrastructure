@@ -8,3 +8,5 @@ synapse__bind_addresses: ['0.0.0.0']
 synapse__metrics_bind_addresses: ['0.0.0.0']
 synapse__port: 8008
 synapse__metrics_port: 9666
+
+synapse__admin_auth_token: '{{ lookup("password", secret + "/credentials/productionmatrix/synapse/admin_auth_token") }}'

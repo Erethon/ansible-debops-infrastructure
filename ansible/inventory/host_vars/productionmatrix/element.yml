@@ -9,7 +9,7 @@ element__matrix_homeserver: "https://matrix.erethon.com"
 
 element__matrix_server_name: "erethon.com"
 
-element__brand: "Erethon Riot"
+element__brand: "Erethon Element"
 
 element__jitsi_url: "meet.libreops.cc"
 

@@ -10,11 +10,15 @@
 
   roles:
 
-    - role: debops.secret
+    - role: secret
 
-    - role: debops.keyring
+    - role: cron
+      tags: [ 'role::cron', 'skip::cron' ]
+
+    - role: keyring
       tags: [ 'role::keyring', 'skip::keyring', 'role::nginx' ]
       keyring__dependent_apt_keys:
         - '{{ synapse__keyring__dependent_apt_keys }}'
 
     - role: synapse
+      tags: [ 'role::synapse']
