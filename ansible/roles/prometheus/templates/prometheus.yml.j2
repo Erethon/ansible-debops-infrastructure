@@ -33,6 +33,25 @@ scrape_configs:
         replacement: 127.0.0.1:9115
 {% endif %}
 
+{% if prometheus__dot_targets is defined %}
+  - job_name: 'dot_blackbox'
+    metrics_path: /probe
+    params:
+      module: [dns]
+    static_configs:
+      - targets:
+{% for target in prometheus__dot_targets %}
+        - {{ target }}
+{% endfor %}
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: 127.0.0.1:9115
+{% endif %}
+
 {% if prometheus__postgres_targets is defined %}
   - job_name: 'postgres'
     static_configs:

@@ -6,3 +6,4 @@ prometheus__http_targets: ['https://libreops.cc', 'https://pad.libreops.cc',
   'https://gnu.gr', 'https://diskuti.gr',
   'https://doh.libredns.gr/dns-query?dns=lSIBAAABAAAAAAAACGxpYnJlZG5zAmdyAAABAAE',
   'https://meet.libreops.cc']
+prometheus__dot_targets: ['dot.libredns.gr']
