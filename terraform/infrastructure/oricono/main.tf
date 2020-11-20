@@ -22,7 +22,7 @@ resource "libvirt_volume" "base_openbsd_volume" {
   name   = "openbsd_base_volume"
   pool   = var.libvirt_storage_pool
   format = "qcow2"
-  source = "/home/bsd/Disks/packer-openbsd6.7-base"
+  source = "/home/bsd/Disks/packer-openbsd6.8-base"
 }
 
 module "dirty_debian_dev" {
@@ -53,6 +53,7 @@ module "nv_core" {
   host_vcpu = 1
   storage_pool = var.libvirt_storage_pool
   volume_name = "nv_core"
+  volume_size = "21474836480"
   base_volume_id = libvirt_volume.base_debian_volume.id
   disks = [{"volume_id": libvirt_volume.base_debian_volume.id}]
   network_id = module.ori_network.id
@@ -65,14 +66,14 @@ runcmd:
 EOF
 }
 
-module "openbsd_67" {
+module "openbsd_68" {
   source = "../../modules/libvirt_host"
 
-  host_name = "openbsd67"
+  host_name = "openbsd68"
   host_memory = "512"
   host_vcpu = 1
   storage_pool = var.libvirt_storage_pool
-  volume_name = "opnbsd_67"
+  volume_name = "openbsd_68"
   base_volume_id = libvirt_volume.base_openbsd_volume.id
   disks = [{"volume_id": libvirt_volume.base_openbsd_volume.id}]
   network_id = module.ori_network.id
