@@ -32,12 +32,12 @@ variable "host_autostart" {
 }
 
 variable "storage_pool" {
-  type = string
+  type    = string
   default = "default"
 }
 
 variable "volume_name" {
-  type = string
+  type    = string
   default = ""
 }
 
@@ -62,26 +62,26 @@ variable "cloudinit_user_template" {
 }
 
 variable "enable_cloud_init" {
-  type = bool
+  type    = bool
   default = false
 }
 
 variable "cloudinit_nameservers" {
-  type = list
+  type    = list
   default = ["88.198.92.222"]
 }
 
 variable "base_volume_id" {
-  type = string
+  type    = string
   default = ""
 }
 
 variable "iso" {
-  type = string
+  type    = string
   default = ""
 }
 
 variable "disks" {
-  type = list
+  type    = list
   default = []
 }
