@@ -8,7 +8,7 @@ variable "network_mode" {
 }
 
 variable "network_cidr" {
-  type = string
+  type = list(string)
 }
 
 variable "network_autostart" {
@@ -21,6 +21,6 @@ variable "network_bridge_interface" {
 }
 
 variable "network_dns_enabled" {
-  type = bool
+  type    = bool
   default = true
 }
