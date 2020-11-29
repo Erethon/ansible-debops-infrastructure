@@ -7,7 +7,7 @@ module "lenny_network" {
 
   network_bridge_interface = "virbr1"
   network_name             = "lenny_network"
-  network_cidr             = "192.168.134.0/24"
+  network_cidr             = ["192.168.134.0/24"]
   network_dns_enabled      = false
 }
 

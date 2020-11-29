@@ -7,7 +7,7 @@ module "ori_network" {
 
   network_bridge_interface = "virbr1"
   network_name             = "ori_network"
-  network_cidr             = "192.168.144.0/24"
+  network_cidr             = ["192.168.144.0/24"]
   network_dns_enabled      = false
 }
 
@@ -16,7 +16,7 @@ module "hacky_network" {
 
   network_bridge_interface = "virbr2"
   network_name             = "hacky_network"
-  network_cidr             = "192.168.145.0/24"
+  network_cidr             = ["192.168.145.0/24"]
   network_dns_enabled      = false
 }
 
