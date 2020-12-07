@@ -37,21 +37,11 @@ resource "libvirt_domain" "libvirt_host" {
     dev = ["hd"]
   }
 
-  #disk {
-  #  volume_id = (libvirt_volume.volume[0].id != "" ? libvirt_volume.volume[0].id : null)
-  #}
-
-  #disk {
-  #  file = (var.iso != "" ? var.iso : null)
-  #  scsi = (var.iso != "" ? false : null)
-  #}
-
   dynamic "disk" {
     for_each = var.disks
-    iterator = disk
     content {
-      #file = (disk.iso != "" ? disk.iso : null)
-      volume_id = (libvirt_volume.volume[0].id != "" ? libvirt_volume.volume[0].id : null)
+      file      = lookup(disk.value, "iso", null)
+      volume_id = (lookup(disk.value, "volume_id", null) != null ? libvirt_volume.volume[0].id : null)
     }
   }
 
@@ -62,6 +52,6 @@ resource "libvirt_domain" "libvirt_host" {
 
   graphics {
     type        = "spice"
-    listen_type = "none"
+    listen_type = (var.enable_graphics == true ? "address" : "none")
   }
 }

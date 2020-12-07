@@ -76,12 +76,12 @@ variable "base_volume_id" {
   default = ""
 }
 
-variable "iso" {
-  type    = string
-  default = ""
+variable "disks" {
+  type    = list(map(any))
+  default = [{}]
 }
 
-variable "disks" {
-  type    = list
-  default = []
+variable enable_graphics {
+  type    = bool
+  default = false
 }
