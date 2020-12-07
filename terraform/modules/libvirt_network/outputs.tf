@@ -1,5 +1,5 @@
 output cidr {
-  value = "${var.network_cidr}"
+  value = var.network_cidr
 }
 
 output id {
