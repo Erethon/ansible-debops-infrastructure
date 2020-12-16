@@ -51,9 +51,9 @@ max_upload_size: "{{ synapse__max_upload_size }}"
 
 dynamic_thumbnails: false
 
-enable_registration: "{{ synapse__enable_registration }}"
+enable_registration: {{ synapse__enable_registration }}
 
-enable_3pid_lookup: "{{ synapse__enable_3pid_lookup }}"
+enable_3pid_lookup: {{ synapse__enable_3pid_lookup }}
 
 allow_guest_access: false
 
@@ -66,3 +66,5 @@ trusted_key_servers:
 
 password_config:
    enabled: true
+
+use_presence: {{ synapse__enable_presence }}
