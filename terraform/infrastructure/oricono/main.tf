@@ -87,6 +87,7 @@ module "openbsd_68" {
   network_cidr      = module.ori_network.cidr[0]
   network_host      = "4"
   enable_cloud_init = false
+  host_autostart    = false
 }
 
 module "xorg_enabled" {
@@ -133,29 +134,29 @@ EOF
 module "kali_live" {
   source = "../../modules/libvirt_host"
 
-  host_name               = "kali_live"
-  host_memory             = "4096"
-  host_vcpu               = 4
-  storage_pool            = var.libvirt_storage_pool
-  disks                   = [{"iso" : "/home/bsd/Disks/kali-linux-2020.4-live-amd64.iso" }]
-  network_id              = module.ori_network.id
-  network_cidr            = module.ori_network.cidr[0]
-  network_host            = "22"
+  host_name       = "kali_live"
+  host_memory     = "4096"
+  host_vcpu       = 4
+  storage_pool    = var.libvirt_storage_pool
+  disks           = [{ "iso" : "/home/bsd/Disks/kali-linux-2020.4-live-amd64.iso" }]
+  network_id      = module.ori_network.id
+  network_cidr    = module.ori_network.cidr[0]
+  network_host    = "22"
   enable_graphics = true
-  host_autostart          = false
+  host_autostart  = false
 }
 
 module "tails_live" {
   source = "../../modules/libvirt_host"
 
-  host_name               = "tails_live"
-  host_memory             = "2048"
-  host_vcpu               = 2
-  storage_pool            = var.libvirt_storage_pool
-  disks                   = [{"iso" : "/home/bsd/Disks/tails-amd64-4.13.iso" }]
-  network_id              = module.ori_network.id
-  network_cidr            = module.ori_network.cidr[0]
-  network_host            = "23"
+  host_name       = "tails_live"
+  host_memory     = "2048"
+  host_vcpu       = 2
+  storage_pool    = var.libvirt_storage_pool
+  disks           = [{ "iso" : "/home/bsd/Disks/tails-amd64-4.13.iso" }]
+  network_id      = module.ori_network.id
+  network_cidr    = module.ori_network.cidr[0]
+  network_host    = "23"
   enable_graphics = true
-  host_autostart          = false
+  host_autostart  = false
 }
