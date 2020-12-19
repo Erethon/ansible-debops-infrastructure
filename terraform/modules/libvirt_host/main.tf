@@ -51,7 +51,11 @@ resource "libvirt_domain" "libvirt_host" {
   }
 
   graphics {
-    type        = "spice"
+    type        = var.graphics
     listen_type = (var.enable_graphics == true ? "address" : "none")
+  }
+
+  video {
+    type = (var.enable_graphics == true ? "vga" : "cirrus")
   }
 }

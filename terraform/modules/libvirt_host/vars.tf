@@ -81,7 +81,12 @@ variable "disks" {
   default = [{}]
 }
 
-variable enable_graphics {
+variable "enable_graphics" {
   type    = bool
   default = false
+}
+
+variable "graphics" {
+  type    = string
+  default = "spice"
 }
