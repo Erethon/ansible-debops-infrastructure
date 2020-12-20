@@ -2,13 +2,13 @@
 
 element__signing_key: https://packages.riot.im/riot-release-key.asc
 
-element__release_version: "1.7.14"
+element__release_version: "1.7.15"
 
-element__release_checksum: "7037fe099f99585c956ee4c004ffc31bc01a2dab24955fcdb2e31580cd8b33d5f421fec94c92dac837068f1b45aeab9bf97698a15266e44a3181053ee05bda48"
+element__release_checksum: "e6ce659a344bda50c953b3e474118a0e8c15a57a3b0fc809aac34a6efff6c3422c96e3ed8d5fe1e04330dd79526fb66a8187e7b72ad6f4cae1f0975a7d44c0a2"
 
-element__release_url: "https://github.com/vector-im/element-web/releases/download/v{{ element__release_version }}/riot-v{{ element__release_version }}.tar.gz"
+element__release_url: "https://github.com/vector-im/element-web/releases/download/v{{ element__release_version }}/element-v{{ element__release_version }}.tar.gz"
 
-element__release_signature_url: "https://github.com/vector-im/element-web/releases/download/v{{ element__release_version }}/riot-v{{ element__release_version }}.tar.gz.asc"
+element__release_signature_url: "https://github.com/vector-im/element-web/releases/download/v{{ element__release_version }}/element-v{{ element__release_version }}.tar.gz.asc"
 
 element__deploy_directory: ""
 
@@ -18,6 +18,6 @@ element__matrix_server_name: "matrix.org"
 
 element__matrix_identity_server: "https://vector.im"
 
-element__brand: "Riot"
+element__brand: "Element"
 
 element__jitsi_url: "jitsi.modular.im"
