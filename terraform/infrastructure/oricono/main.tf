@@ -153,7 +153,7 @@ module "tails_live" {
   host_memory     = "2048"
   host_vcpu       = 2
   storage_pool    = var.libvirt_storage_pool
-  disks           = [{ "iso" : "/home/bsd/Disks/tails-amd64-4.13.iso" }]
+  disks           = [{ "iso" : "/home/bsd/Disks/tails-amd64-4.14.iso" }]
   network_id      = module.ori_network.id
   network_cidr    = module.ori_network.cidr[0]
   network_host    = "23"
