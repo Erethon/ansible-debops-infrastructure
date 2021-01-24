@@ -1,0 +1,4 @@
+---
+
+# Hardcoded for now since it's simpler this way
+k3s__nodes: ['192.168.133.2', '192.168.133.3', '192.168.133.4']

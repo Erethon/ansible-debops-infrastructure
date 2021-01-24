@@ -1,0 +1,21 @@
+---
+
+ferm__group_rules:
+  - type: 'accept'
+    filename: 'k3sapi'
+    name: 'k3sapi'
+    table: 'filter'
+    chain: 'INPUT'
+    dport: ['2379', '2380', '6443']
+    protocol: 'tcp'
+    domain: 'ip'
+    saddr: "{{ k3s__nodes }}"
+  - type: 'accept'
+    filename: 'k3sflannel'
+    name: 'k3sflannel'
+    table: 'filter'
+    chain: 'INPUT'
+    dport: ['8472']
+    saddr: "{{ k3s__nodes }}"
+    protocol: 'udp'
+    domain: 'ip'

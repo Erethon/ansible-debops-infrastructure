@@ -1,0 +1,42 @@
+---
+
+ferm__host_rules:
+  - type: 'accept'
+    filename: 'wg0'
+    name: 'wg0'
+    table: 'filter'
+    chain: 'INPUT'
+    dport: [ 8443 ]
+    protocol: 'udp'
+    domain: 'ip'
+
+  - type: 'accept'
+    filename: 'vmnet133'
+    name: 'vmnet133'
+    table: 'filter'
+    chain: 'FORWARD'
+    domain: 'ip'
+    interface_present: 'wg0'
+    outerface_present: 'virbr1'
+    comment: 'Forward traffic from Wireguard to VMs'
+
+  - type: 'accept'
+    filename: 'vmnet133_public'
+    name: 'vmnet133_public'
+    table: 'filter'
+    chain: 'FORWARD'
+    domain: 'ip'
+    interface_present: 'virbr1'
+    saddr: '192.168.133.0/24'
+    comment: 'Forward traffic from VMs to the internet'
+
+  - type: 'custom'
+    filename: 'vmnet_nat'
+    name: 'vmnet_nat'
+    comment: 'Perform NAT for VMs'
+    rules: |
+      domain ip table nat chain POSTROUTING {
+        outerface enp2s0 {
+          MASQUERADE;
+        }
+      }
