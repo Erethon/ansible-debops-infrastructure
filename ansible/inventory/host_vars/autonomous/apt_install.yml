@@ -2,5 +2,5 @@
 
 apt_install__host_packages: ['haproxy', 'cryptsetup', 'qemu-kvm',
   'libvirt-clients', 'libvirt-daemon-system', 'ebtables', 'dnsmasq',
-  'bridge-utils', 'qemu-utils', 'virtinst', 'openvpn', 'easy-rsa',
-  'pdns-server', 'netcat-openbsd', 'smartmontools']
+  'bridge-utils', 'qemu-utils', 'virtinst', 'wireguard', 'pdns-server',
+  'netcat-openbsd', 'smartmontools']
