@@ -1,0 +1,5 @@
+---
+
+resources__group_paths:
+  - path: {{ docker__volumes_location }}
+    state: 'directory'

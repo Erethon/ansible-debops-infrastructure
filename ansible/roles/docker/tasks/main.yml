@@ -1,5 +1,0 @@
----
-
-- file:
-    name: "{{ docker__volumes_location }}"
-    state: directory
