@@ -7,6 +7,7 @@
     section: "{{ item.section }}"
     option: "{{ item.option }}"
     value: "{{ item.value }}"
+    mode: 0640
   loop: "{{ grafana__settings }}"
 
 - name: Enable and restart Grafana service

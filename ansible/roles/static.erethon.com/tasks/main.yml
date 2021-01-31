@@ -14,9 +14,10 @@
     dest: "{{ item.dest }}"
     owner: root
     group: wheel
+    mode: "{{ item.mode }}"
   with_items:
-    - { src: "httpd.conf", dest: "/etc/httpd.conf" }
-    - { src: "httpd/", dest: "/etc/httpd" }
+    - { src: "httpd.conf", dest: "/etc/httpd.conf", mode: "0644" }
+    - { src: "httpd/", dest: "/etc/httpd", mode: "0755"}
   notify: Restart httpd
 
 - name: Add individual sites

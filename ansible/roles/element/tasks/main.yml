@@ -33,4 +33,5 @@
   template:
     src: config.json
     dest: "{{ element__deploy_directory }}/config.json"
+    mode: 0644
   tags: ["riot::configure"]

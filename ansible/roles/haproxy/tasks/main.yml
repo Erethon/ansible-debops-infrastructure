@@ -4,8 +4,9 @@
   template:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
+    mode: "{{ item.mode }}"
   notify: Reload haproxy
   with_items:
-    - { src: "haproxy.cfg.j2", dest: "/etc/haproxy/haproxy.cfg" }
-    - { src: "crt-list.cfg.j2", dest: "/etc/haproxy/crt-list.cfg" }
-    - { src: "concat_certificates.sh.j2", dest: "/usr/bin/concat_certificates.sh" }
+    - { src: "haproxy.cfg.j2", dest: "/etc/haproxy/haproxy.cfg", mode: "0644" }
+    - { src: "crt-list.cfg.j2", dest: "/etc/haproxy/crt-list.cfg", mode: "0644" }
+    - { src: "concat_certificates.sh.j2", dest: "/usr/bin/concat_certificates.sh", mode: "0755" }

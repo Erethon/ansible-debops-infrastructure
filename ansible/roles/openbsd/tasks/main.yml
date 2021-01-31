@@ -1,10 +1,5 @@
 ---
 
-- name: Template installurl
-  template:
-    src: installurl
-    dest: /etc/installurl
-
 - name: Install packages
   openbsd_pkg:
     name: "{{ openbsd__packages }}"
@@ -40,6 +35,7 @@
     state: present
     line: "permit nopass keepenv setenv { HOME } {{ item.name }} as root"
     create: yes
+    mode: 0644
   with_items:
   - "{{ users__accounts }}"
   when: item.doas

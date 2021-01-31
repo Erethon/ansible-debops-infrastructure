@@ -4,4 +4,5 @@
   template:
     src: prometheus.yml.j2
     dest: /etc/prometheus/prometheus.yml
+    mode: 0644
   notify: Restart prometheus
