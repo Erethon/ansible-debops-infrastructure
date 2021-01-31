@@ -26,7 +26,8 @@
   with_items:
   - "{{ users__accounts }}"
 
-- authorized_key:
+- name: Copy public ssh keys
+  authorized_key:
     user: "{{ item.name }}"
     state: present
     key: "{{ item.sshkeys[0] }}"
@@ -41,4 +42,4 @@
     create: yes
   with_items:
   - "{{ users__accounts }}"
-  when: item.doas == True
+  when: item.doas

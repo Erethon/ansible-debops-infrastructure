@@ -1,13 +1,15 @@
 ---
 
-- file:
+- name: Create /etc/httpd/
+  file:
     path: /etc/httpd/
     state: directory
     mode: 0755
     owner: root
     group: wheel
 
-- copy:
+- name: Copy httpd config
+  copy:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
     owner: root
@@ -17,7 +19,8 @@
     - { src: "httpd/", dest: "/etc/httpd" }
   notify: Restart httpd
 
-- lineinfile:
+- name: Add individual sites
+  lineinfile:
     path: /etc/httpd.conf
     line: 'include "/etc/httpd/{{ item }}.conf"'
   with_items:
