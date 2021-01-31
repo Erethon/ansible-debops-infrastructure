@@ -1,0 +1,6 @@
+---
+
+resources__host_files:
+  - dest: '/etc/default/prometheus-node-exporter'
+    content: |
+      ARGS="--web.listen-address={{ node_exporter__listen_address }}:9100"
