@@ -3,3 +3,5 @@
 apt_preferences__list:
   - package: 'prometheus-node-exporter'
     backports: ['stretch']
+  - package: 'openssh-server'
+    backports: ['buster']
