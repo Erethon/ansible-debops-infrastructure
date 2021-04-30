@@ -3,10 +3,10 @@
 - name: Download Element GPG key
   get_url:
     url: "{{ element__signing_key }}"
-    dest: /tmp/riot-release-key.asc
+    dest: /tmp/element-release-key.asc
 
 - name: Import Element GPG key
-  shell: gpg --import /tmp/riot-release-key.asc
+  shell: gpg --import /tmp/element-release-key.asc
 
 - name: Download Element release
   get_url:
