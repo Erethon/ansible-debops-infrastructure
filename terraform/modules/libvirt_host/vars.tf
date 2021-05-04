@@ -67,7 +67,7 @@ variable "enable_cloud_init" {
 }
 
 variable "cloudinit_nameservers" {
-  type    = list
+  type    = list(any)
   default = ["88.198.92.222"]
 }
 
