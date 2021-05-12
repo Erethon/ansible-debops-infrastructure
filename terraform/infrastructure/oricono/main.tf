@@ -36,7 +36,7 @@ module "dirty_debian_dev" {
   source = "../../modules/libvirt_host"
 
   host_name               = "dirty_debian_dev"
-  host_memory             = "1024"
+  host_memory             = "2048"
   host_vcpu               = 2
   storage_pool            = var.libvirt_storage_pool
   volume_name             = "dirty_debian_dev"
@@ -77,7 +77,7 @@ module "openbsd_69" {
   source = "../../modules/libvirt_host"
 
   host_name         = "openbsd69"
-  host_memory       = "512"
+  host_memory       = "2048"
   host_vcpu         = 1
   storage_pool      = var.libvirt_storage_pool
   volume_name       = "openbsd_69"
@@ -94,7 +94,7 @@ module "xorg_enabled" {
   source = "../../modules/libvirt_host"
 
   host_name               = "xorg_enabled"
-  host_memory             = "1024"
+  host_memory             = "2048"
   host_vcpu               = 1
   storage_pool            = var.libvirt_storage_pool
   volume_name             = "xorg_enabled"
@@ -114,10 +114,11 @@ module "rust_dev" {
   source = "../../modules/libvirt_host"
 
   host_name               = "rust_dev"
-  host_memory             = "1024"
-  host_vcpu               = 2
+  host_memory             = "4096"
+  host_vcpu               = 4
   storage_pool            = var.libvirt_storage_pool
   volume_name             = "rust_dev"
+  volume_size             = "16106127360"
   base_volume_id          = libvirt_volume.base_debian_volume.id
   disks                   = [{ "volume_id" : libvirt_volume.base_debian_volume.id }]
   network_id              = module.ori_network.id
@@ -150,7 +151,7 @@ module "tails_live" {
   source = "../../modules/libvirt_host"
 
   host_name       = "tails_live"
-  host_memory     = "2048"
+  host_memory     = "4096"
   host_vcpu       = 2
   storage_pool    = var.libvirt_storage_pool
   disks           = [{ "iso" : "/home/bsd/Disks/tails-amd64-4.14.iso" }]
