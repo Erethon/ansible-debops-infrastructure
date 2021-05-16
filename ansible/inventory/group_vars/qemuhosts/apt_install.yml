@@ -1,0 +1,6 @@
+---
+
+apt_install__group_packages: ['haproxy', 'cryptsetup', 'qemu-kvm',
+  'libvirt-clients', 'libvirt-daemon-system', 'ebtables', 'dnsmasq',
+  'bridge-utils', 'qemu-utils', 'virtinst', 'wireguard', 'pdns-server',
+  'netcat-openbsd', 'smartmontools']
