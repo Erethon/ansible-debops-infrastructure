@@ -1,0 +1,8 @@
+---
+
+- hosts: wireguard
+  gather_facts: no
+
+  roles:
+    - role: secret
+    - role: wireguard
