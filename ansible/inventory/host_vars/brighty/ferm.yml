@@ -1,0 +1,53 @@
+---
+
+ferm__host_rules:
+  - type: 'accept'
+    filename: 'nodeexporter'
+    name: 'nodeexporter'
+    table: 'filter'
+    chain: 'INPUT'
+    dport: [ 9100 ]
+    protocol: 'tcp'
+    # Current prometheus host
+    saddr: '163.172.24.171/32'
+    domain: 'ip'
+
+  - type: 'accept'
+    filename: 'wg0'
+    name: 'wg0'
+    table: 'filter'
+    chain: 'INPUT'
+    dport: [ 8443 ]
+    protocol: 'udp'
+    domain: 'ip'
+
+  - type: 'accept'
+    filename: 'vmnet135'
+    name: 'vmnet135'
+    table: 'filter'
+    chain: 'FORWARD'
+    domain: 'ip'
+    interface_present: 'wg0'
+    outerface_present: 'virbr1'
+    comment: 'Forward traffic from Wireguard to VMs'
+
+  - type: 'accept'
+    filename: 'vmnet135_public'
+    name: 'vmnet135_public'
+    table: 'filter'
+    chain: 'FORWARD'
+    domain: 'ip'
+    interface_present: 'virbr1'
+    saddr: '192.168.135.0/24'
+    comment: 'Forward traffic from VMs to the internet'
+
+  - type: 'custom'
+    filename: 'vmnet_nat'
+    name: 'vmnet_nat'
+    comment: 'Perform NAT for VMs'
+    rules: |
+      domain ip table nat chain POSTROUTING {
+        outerface enp35s0 {
+          MASQUERADE;
+        }
+      }
