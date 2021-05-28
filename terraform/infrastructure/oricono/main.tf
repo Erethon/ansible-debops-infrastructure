@@ -152,7 +152,7 @@ module "tails_live" {
 
   host_name       = "tails_live"
   host_memory     = "4096"
-  host_vcpu       = 2
+  host_vcpu       = 6
   storage_pool    = var.libvirt_storage_pool
   disks           = [{ "iso" : "/home/bsd/Disks/tails-amd64-4.14.iso" }]
   network_id      = module.ori_network.id
