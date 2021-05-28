@@ -7,3 +7,5 @@ wireguard__host_peers:
     allowed_ips: "10.0.135.2/32"
   - public_key: "ZDmHC9aaH2bhDcgQEyStweMfvdt1WDeA2iJ93X7UUiw="
     allowed_ips: "10.0.135.3/32"
+  - public_key_host: "thor"
+    allowed_ips: "10.0.135.96/32"
