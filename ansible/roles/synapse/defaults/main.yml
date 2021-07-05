@@ -27,3 +27,5 @@ synapse__enable_registration: 'false'
 synapse__enable_3pid_lookup: 'false'
 
 synapse__enable_presence: 'false'
+
+synapse__enable_device_name_over_federation: 'false'
