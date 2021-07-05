@@ -1,0 +1,5 @@
+wireguard__host_peers:
+  - public_key_host: "brighty"
+    allowed_ips: "10.0.135.1/32"
+    endpoint: "brighty.erethon.com:8443"
+wireguard__host_ip: "10.0.135.96/32"
