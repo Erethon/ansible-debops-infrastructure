@@ -1,9 +1,11 @@
 ---
 
+synapse__repositories: 'main prerelease'
+
 synapse__keyring__dependent_apt_keys:
   - id: AAF9AE843A7584B5A3E4CD2BCF45A512DE2DA058
     url: 'https://packages.matrix.org/debian/matrix-org-archive-keyring.gpg'
-    repo: 'deb https://packages.matrix.org/debian/ {{ ansible_distribution_release }} main'
+    repo: 'deb https://packages.matrix.org/debian/ {{ ansible_distribution_release }} {{ synapse__repositories }}'
     state: 'present'
 
 synapse__port: 8008
@@ -29,3 +31,5 @@ synapse__enable_3pid_lookup: 'false'
 synapse__enable_presence: 'false'
 
 synapse__enable_device_name_over_federation: 'false'
+
+synapse__caches_expiry_time: '60m'

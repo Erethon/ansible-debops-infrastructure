@@ -72,3 +72,6 @@ use_presence: {{ synapse__enable_presence }}
 allow_device_name_lookup_over_federation: {{ synapse__enable_device_name_over_federation }}
 
 public_baseurl: "{{ synapse__public_base_url }}"
+
+caches:
+  expiry_time: "{{ synapse__caches_expiry_time }}"
