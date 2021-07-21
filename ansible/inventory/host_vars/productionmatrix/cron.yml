@@ -5,6 +5,5 @@ cron__host_jobs:
     user: "root"
     jobs:
       - name: "Purge old Synapse media"
-        job: "curl --header 'Authorization: Bearer {{ synapse__admin_auth_token }}' -X POST localhost:8008/_synapse/admin/v1/purge_media_cache?before_ts=`date --date='-1 month' +\\%s\\%3N`"
+        job: "curl --header 'Authorization: Bearer {{ synapse__admin_auth_token }}' -X POST localhost:8008/_synapse/admin/v1/purge_media_cache?before_ts=`date --date='-1 days' +\\%s\\%3N`"
     special_time: "daily"
-
