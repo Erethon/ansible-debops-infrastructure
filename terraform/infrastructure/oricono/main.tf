@@ -57,7 +57,7 @@ module "nv_core" {
 
   host_name               = "nv_core"
   host_memory             = "4096"
-  host_vcpu               = 1
+  host_vcpu               = 4
   storage_pool            = var.libvirt_storage_pool
   volume_name             = "nv_core"
   volume_size             = "21474836480"
