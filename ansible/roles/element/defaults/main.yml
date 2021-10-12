@@ -22,4 +22,4 @@ element__brand: "Element"
 
 element__jitsi_url: "jitsi.modular.im"
 
-element__enable_labs: true
+element__enable_labs: "true"
