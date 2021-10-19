@@ -42,7 +42,8 @@ module "production_pg_matrix" {
   source = "../../modules/libvirt_host"
 
   host_name               = "production_pg_matrix"
-  host_memory             = "1024"
+  host_vcpu               = 4
+  host_memory             = "2048"
   storage_pool            = var.libvirt_storage_pool
   volume_name             = "production_pg_matrix_volume"
   base_volume_id          = libvirt_volume.base_debian_volume.id
