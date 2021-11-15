@@ -1,5 +1,0 @@
----
-
-apt_preferences__host_list:
-  - package: 'prometheus'
-    backports: ['buster']
