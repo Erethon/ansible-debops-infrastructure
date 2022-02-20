@@ -48,7 +48,8 @@
         "https://matrix.org": false
     },
     "settingDefaults": {
-        "breadcrumbs": true
+        "breadcrumbs": true,
+        "UIFeature.widgets" : {{ element__enable_widgets }}
     },
     "jitsi": {
         "preferredDomain": "{{ element__jitsi_url }}"

@@ -2,9 +2,9 @@
 
 element__signing_key: https://packages.riot.im/element-release-key.asc
 
-element__release_version: "1.9.9"
+element__release_version: "1.10.4"
 
-element__release_checksum: "f414748604aaeb95b3725d2926122e52560ce4d18fd9345c40836d6e62177622ff32ecf94f9c2d1004ea1d4a1301a7e8ba7c593f7fbc802a31a36a1a9289d919"
+element__release_checksum: "61694731d3cb137df930c0dae439e0928907b5a38654d7e51b9954f785ee60ce4d831f81777f08367db55b793d9b6b7c83518d7f9509986216e7fcd1fca31e8e"
 
 element__release_url: "https://github.com/vector-im/element-web/releases/download/v{{ element__release_version }}/element-v{{ element__release_version }}.tar.gz"
 
@@ -23,3 +23,5 @@ element__brand: "Element"
 element__jitsi_url: "jitsi.modular.im"
 
 element__enable_labs: "true"
+
+element__enable_widgets: "false"
