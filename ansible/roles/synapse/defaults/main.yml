@@ -33,3 +33,5 @@ synapse__enable_presence: 'false'
 synapse__enable_device_name_over_federation: 'false'
 
 synapse__caches_expiry_time: '60m'
+
+synapse__enable_phonehome_stats: 'false'
