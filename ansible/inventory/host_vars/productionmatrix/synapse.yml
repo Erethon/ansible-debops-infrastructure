@@ -14,3 +14,5 @@ synapse__max_upload_size: '35M'
 synapse__admin_auth_token: '{{ lookup("password", secret + "/credentials/productionmatrix/synapse/admin_auth_token") }}'
 
 synapse__public_base_url: 'https://matrix.erethon.com'
+
+synapse__cache_factors: ['get_users_in_room: 4.0', '_get_joined_profile_from_event_id: 8.0']

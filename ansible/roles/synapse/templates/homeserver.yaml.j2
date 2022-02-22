@@ -64,5 +64,11 @@ public_baseurl: "{{ synapse__public_base_url }}"
 
 caches:
   expiry_time: "{{ synapse__caches_expiry_time }}"
+  {% if synapse__cache_factors is defined %}
+per_cache_factors:
+  {% for cache_factor in synapse__cache_factors %}
+    {{ cache_factor }}
+  {% endfor %}
+  {% endif %}
 
 report_stats: "{{ synapse__enable_phonehome_stats }}"
