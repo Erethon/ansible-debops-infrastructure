@@ -25,3 +25,7 @@ element__jitsi_url: "jitsi.modular.im"
 element__enable_labs: "true"
 
 element__enable_widgets: "false"
+element__enable_feedback: "false"
+element__enable_identity: "false"
+element__enable_thirdpartyid: "false"
+element__enable_social: "false"

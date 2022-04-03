@@ -49,7 +49,11 @@
     },
     "settingDefaults": {
         "breadcrumbs": true,
-        "UIFeature.widgets" : {{ element__enable_widgets }}
+        "UIFeature.widgets" : {{ element__enable_widgets }},
+        "UIFeature.feedback" : {{ element__enable_feedback }},
+        "UIFeature.identityServer" : {{ element__enable_identity }},
+        "UIFeature.shareSocial" : {{ element__enable_social }},
+        "UIFeature.thirdPartyId" : {{ element__enable_thirdpartyid }}
     },
     "jitsi": {
         "preferredDomain": "{{ element__jitsi_url }}"
