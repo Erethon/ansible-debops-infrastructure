@@ -54,6 +54,7 @@ module "dirty_debian_dev" {
   network_host            = "2"
   enable_cloud_init       = true
   cloudinit_user_template = <<EOF
+  host_autostart          = false
 runcmd:
   - echo 'source /etc/network/interfaces.d/*' > /etc/network/interfaces
 EOF
@@ -75,6 +76,7 @@ module "nv_core" {
   network_host            = "3"
   enable_cloud_init       = true
   cloudinit_user_template = <<EOF
+  host_autostart          = false
 runcmd:
   - echo 'source /etc/network/interfaces.d/*' > /etc/network/interfaces
 EOF
@@ -112,6 +114,7 @@ module "xorg_enabled" {
   network_host            = "5"
   enable_cloud_init       = true
   cloudinit_user_template = <<EOF
+  host_autostart          = false
 runcmd:
   - echo 'source /etc/network/interfaces.d/*' > /etc/network/interfaces
 EOF
