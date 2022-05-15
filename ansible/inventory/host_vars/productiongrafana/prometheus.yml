@@ -3,8 +3,7 @@
 prometheus__node_targets: ['127.0.0.1', 'matrix.int.erethon.com',
   'pgmatrix.int.erethon.com', 'oricono.int.erethon.com',
   'spinny.int.erethon.com', 'kagari.int.erethon.com', 'rpi.int.erethon.com',
-  'lenny.int.erethon.com', 'docker.int.erethon.com', 'thor.int.erethon.com',
-  'autonomous.erethon.com']
+  'lenny.int.erethon.com', 'docker.int.erethon.com', 'thor.int.erethon.com']
 prometheus__http_targets: ['https://erethon.com',
   'https://blog.erethon.com', 'https://grafana.erethon.com',
   'https://riot.dgrig.com', 'https://matrix.erethon.com',
