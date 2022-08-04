@@ -1,12 +1,6 @@
 ---
 
 cron__host_jobs:
-  "purge_old_media":
-    user: "root"
-    jobs:
-      - name: "Purge old Synapse media"
-        job: "curl --header 'Authorization: Bearer {{ synapse__admin_auth_token }}' -X POST {{ ansible_host }}:8008/_synapse/admin/v1/purge_media_cache?before_ts=`date --date='-1 days' +\\%s\\%3N`"
-    special_time: "daily"
   "cleanup_room_history":
     user: "root"
     jobs:
