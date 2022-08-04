@@ -33,6 +33,8 @@ database:
 log_config: "/etc/matrix-synapse/log.yaml"
 
 media_store_path: "/var/lib/matrix-synapse/media"
+media_retention:
+  remote_media_lifetime: "{{ synapse__remote_media_lifetime }}"
 
 uploads_path: "/var/lib/matrix-synapse/uploads"
 
@@ -63,7 +65,7 @@ allow_device_name_lookup_over_federation: {{ synapse__enable_device_name_over_fe
 public_baseurl: "{{ synapse__public_base_url }}"
 
 caches:
-  expiry_time: "{{ synapse__caches_expiry_time }}"
+  global_factor: {{ synapse__cache_global_factor | default(1.0) }}
   {% if synapse__cache_factors is defined %}
 per_cache_factors:
   {% for cache_factor in synapse__cache_factors %}
@@ -71,4 +73,4 @@ per_cache_factors:
   {% endfor %}
   {% endif %}
 
-report_stats: "{{ synapse__enable_phonehome_stats }}"
+report_stats: {{ synapse__enable_phonehome_stats }}
