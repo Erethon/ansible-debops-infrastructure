@@ -60,28 +60,6 @@ runcmd:
 EOF
 }
 
-module "nv_core" {
-  source = "../../modules/libvirt_host"
-
-  host_name               = "nv_core"
-  host_memory             = "4096"
-  host_vcpu               = 4
-  storage_pool            = var.libvirt_storage_pool
-  volume_name             = "nv_core"
-  volume_size             = "21474836480"
-  base_volume_id          = libvirt_volume.base_debian_volume_v3.id
-  disks                   = [{ "volume_id" : libvirt_volume.base_debian_volume_v3.id }]
-  network_id              = module.ori_network.id
-  network_cidr            = module.ori_network.cidr[0]
-  network_host            = "3"
-  enable_cloud_init       = true
-  cloudinit_user_template = <<EOF
-  host_autostart          = false
-runcmd:
-  - echo 'source /etc/network/interfaces.d/*' > /etc/network/interfaces
-EOF
-}
-
 module "openbsd_70" {
   source = "../../modules/libvirt_host"
 
