@@ -149,3 +149,24 @@ module "tails_live" {
   enable_graphics = true
   host_autostart  = false
 }
+
+module "red_team_oricono" {
+  source = "../../modules/libvirt_host"
+
+  host_name               = "red_team_oricono"
+  host_memory             = "2048"
+  host_vcpu               = 2
+  storage_pool            = var.libvirt_storage_pool
+  volume_name             = "red_team_oricono"
+  base_volume_id          = libvirt_volume.base_debian_11_volume.id
+  disks                   = [{ "volume_id" : libvirt_volume.base_debian_11_volume.id }]
+  network_id              = module.ori_network.id
+  network_cidr            = module.ori_network.cidr[0]
+  network_host            = "3"
+  enable_cloud_init       = true
+  cloudinit_user_template = <<EOF
+  host_autostart          = false
+runcmd:
+  - echo 'source /etc/network/interfaces.d/*' > /etc/network/interfaces
+EOF
+}
