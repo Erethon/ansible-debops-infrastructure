@@ -1,0 +1,7 @@
+---
+
+resources__group_files:
+  - dest: '/home/dgrig/.config/subfinder/provider-config.yaml'
+    content: |
+      shodan:
+        - {{ lookup("password", secret + "/credentials/redteam/subfinder/shodan") }}

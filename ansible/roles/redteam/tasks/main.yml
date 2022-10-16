@@ -1,0 +1,7 @@
+---
+
+- name: Pull docker scanning images
+  community.docker.docker_image:
+    name: "{{ item }}"
+    source: pull
+  with_items: "{{ redteam__docker_images }}"
