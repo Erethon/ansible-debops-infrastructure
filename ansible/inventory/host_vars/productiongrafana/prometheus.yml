@@ -14,3 +14,7 @@ prometheus__postgres_targets: ['pgmatrix.int.erethon.com']
 prometheus__synapse_target: 'matrix.int.erethon.com'
 prometheus__apcupsd_target: 'thor.int.erethon.com'
 prometheus__dht_target: 'rpi.int.erethon.com'
+prometheus__libvirt_targets: ['oricono.int.erethon.com']
+prometheus__icmp_targets: ['1.1.1.1', '8.8.8.8', 'erethon.com',
+  'mail.erethon.com', 'brighty.erethon.com', '192.168.2.1']
+prometheus__icmp_replacement: 'thor.int.erethon.com:9115'
