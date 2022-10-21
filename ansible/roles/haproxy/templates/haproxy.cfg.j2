@@ -40,7 +40,7 @@ frontend eighty
 frontend ssl
     bind *:443 ssl crt-list /etc/haproxy/crt-list.cfg
     mode http
-    http-response set-header Strict-Transport-Security max-age=16000000;\ includeSubDomains;\ preload
+    http-response set-header Strict-Transport-Security max-age=31536000;\ includeSubDomains;\ preload
     http-request set-header X-Forwarded-Proto https if { ssl_fc }
 
     use_backend local if { url_beg /.well-known }
