@@ -1,3 +1,4 @@
 ---
 
 tor__nickname: '{{ lookup("password", secret + "/credentials/t2/tor/nickname") }}'
+pki_enabled: False

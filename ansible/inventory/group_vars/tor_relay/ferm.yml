@@ -8,4 +8,4 @@ ferm__group_rules:
     chain: 'INPUT'
     dport: ['{{ tor__ORPort }}']
     protocol: 'tcp'
-    domain: 'ip'
+    domain: ['ip', 'ip6']

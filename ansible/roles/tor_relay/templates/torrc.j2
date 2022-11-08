@@ -3,3 +3,6 @@ ORPort  {{ tor__ORPort }}
 ExitRelay 0
 ExitPolicy reject *:*
 SocksPort 0
+{% if tor__family is defined and tor__family %}
+MyFamily {{ tor__family }}
+{% endif %}

@@ -1,3 +1,4 @@
 ---
 
 tor__ORPort: 443
+tor__family: '{{ lookup("password", secret + "/credentials/tor_relay/tor/family") }}'
