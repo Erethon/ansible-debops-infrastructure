@@ -1,4 +1,0 @@
----
-
-sysctl__shared_memory_configure: False
-sysctl__paging_configure: False
