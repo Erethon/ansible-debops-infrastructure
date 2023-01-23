@@ -6,3 +6,6 @@ SocksPort 0
 {% if tor__family is defined and tor__family %}
 MyFamily {{ tor__family }}
 {% endif %}
+{% if tor__contact is defined and tor__contact %}
+ContactInfo {{ tor__contact }}
+{% endif %}
