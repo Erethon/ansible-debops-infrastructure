@@ -135,21 +135,6 @@ module "kali_live" {
   host_autostart  = false
 }
 
-module "tails_live" {
-  source = "../../modules/libvirt_host"
-
-  host_name       = "tails_live"
-  host_memory     = "4096"
-  host_vcpu       = 6
-  storage_pool    = var.libvirt_storage_pool
-  disks           = [{ "iso" : "/home/bsd/Disks/tails-amd64-5.6.iso" }]
-  network_id      = module.ori_network.id
-  network_cidr    = module.ori_network.cidr[0]
-  network_host    = "23"
-  enable_graphics = true
-  host_autostart  = false
-}
-
 module "red_team_oricono" {
   source = "../../modules/libvirt_host"
 
@@ -163,6 +148,27 @@ module "red_team_oricono" {
   network_id              = module.ori_network.id
   network_cidr            = module.ori_network.cidr[0]
   network_host            = "3"
+  enable_cloud_init       = true
+  cloudinit_user_template = <<EOF
+  host_autostart          = false
+runcmd:
+  - echo 'source /etc/network/interfaces.d/*' > /etc/network/interfaces
+EOF
+}
+
+module "embedded_rust" {
+  source = "../../modules/libvirt_host"
+
+  host_name               = "embedded_rust"
+  host_memory             = "4096"
+  host_vcpu               = 4
+  storage_pool            = var.libvirt_storage_pool
+  volume_name             = "embedded_rust"
+  base_volume_id          = libvirt_volume.base_debian_11_volume.id
+  disks                   = [{ "volume_id" : libvirt_volume.base_debian_11_volume.id }]
+  network_id              = module.ori_network.id
+  network_cidr            = module.ori_network.cidr[0]
+  network_host            = "6"
   enable_cloud_init       = true
   cloudinit_user_template = <<EOF
   host_autostart          = false
