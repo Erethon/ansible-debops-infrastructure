@@ -176,3 +176,24 @@ runcmd:
   - echo 'source /etc/network/interfaces.d/*' > /etc/network/interfaces
 EOF
 }
+
+module "ps_debian" {
+  source = "../../modules/libvirt_host"
+
+  host_name               = "ps_debian"
+  host_memory             = "8192"
+  host_vcpu               = 4
+  storage_pool            = var.libvirt_storage_pool
+  volume_name             = "ps_debian"
+  base_volume_id          = libvirt_volume.base_debian_11_volume.id
+  disks                   = [{ "volume_id" : libvirt_volume.base_debian_11_volume.id }]
+  network_id              = module.ori_network.id
+  network_cidr            = module.ori_network.cidr[0]
+  network_host            = "8"
+  enable_cloud_init       = true
+  cloudinit_user_template = <<EOF
+  host_autostart          = false
+runcmd:
+  - echo 'source /etc/network/interfaces.d/*' > /etc/network/interfaces
+EOF
+}
