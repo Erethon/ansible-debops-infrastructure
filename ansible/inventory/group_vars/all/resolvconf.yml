@@ -1,6 +1,6 @@
 ---
 
-resolvconf__enabled: true
-resolvconf__static_enabled: true
+resolvconf__enabled: True
+resolvconf__static_enabled: True
 resolvconf__static_content: |
   nameserver 88.198.92.222
