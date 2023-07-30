@@ -1,0 +1,15 @@
+---
+
+cron__host_jobs:
+  "backup_wordpress_db":
+    user: "root"
+    jobs:
+      - name: "Backup Wordpress Database"
+        job: "/usr/bin/mysqldump wordpress > /tmp/wordpress-$(date +\\%Y\\%m\\%d) && rclone sync /tmp/wordpress-$(date +\\%Y\\%m\\%d) b2db:plothopes-db && rm /tmp/wordpress-$(date +\\%Y\\%m\\%d)"
+    special_time: "daily"
+  "backup_wordpress_files":
+    user: "root"
+    jobs:
+      - name: "Backup Wordpress Files"
+        job: "rclone sync -L /var/lib/wordpress b2wp:plothopes-wordpress"
+    special_time: "daily"

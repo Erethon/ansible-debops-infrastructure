@@ -1,0 +1,19 @@
+---
+
+resources__enabled: True
+
+resources__group_paths:
+  - '/root/.config/rclone/'
+
+resources__group_files:
+  - dest: '/root/.config/rclone/rclone.conf'
+    content: |
+      [b2wp]
+      type = b2
+      account = {{ lookup("password", secret + "/credentials/productionplothopes/b2/wpkeyid") }}
+      key = {{ lookup("password", secret + "/credentials/productionplothopes/b2/wpkey") }}
+
+      [b2db]
+      type = b2
+      account = {{ lookup("password", secret + "/credentials/productionplothopes/b2/dbkeyid") }}
+      key = {{ lookup("password", secret + "/credentials/productionplothopes/b2/dbkey") }}
