@@ -1,5 +1,0 @@
----
-
-plothopes__mysql_root_password: '{{ lookup("password", secret + "/credentials/plothopes.com/mysql/password") }}'
-plothopes__private_ip: '192.168.122.4'
-plothopes__port: '28080'
