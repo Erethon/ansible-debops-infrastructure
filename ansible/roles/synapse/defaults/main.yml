@@ -37,3 +37,5 @@ synapse__caches_expiry_time: '60m'
 synapse__enable_phonehome_stats: 'false'
 
 synapse__remote_media_lifetime: '1d'
+
+synapse__token_registration: 'true'
