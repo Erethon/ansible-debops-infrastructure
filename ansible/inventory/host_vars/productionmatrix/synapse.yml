@@ -1,15 +1,15 @@
 ---
 
 synapse__database_password: '{{ lookup("password", secret + "/credentials/productionmatrix/postgresql/password") }}'
-synapse__database_host: 192.168.199.3
+synapse__database_host: 192.168.135.3
 
 synapse__server_name: 'erethon.com'
 
-synapse__bind_addresses: ['192.168.199.2']
+synapse__bind_addresses: ['192.168.135.4']
 synapse__metrics_bind_addresses: ['0.0.0.0']
 synapse__port: 8008
 synapse__metrics_port: 9666
-synapse__max_upload_size: '35M'
+synapse__max_upload_size: '100M'
 
 synapse__admin_auth_token: '{{ lookup("password", secret + "/credentials/productionmatrix/synapse/admin_auth_token") }}'
 
@@ -17,3 +17,5 @@ synapse__public_base_url: 'https://matrix.erethon.com'
 
 synapse__cache_factors: ['get_users_in_room: 4.0',
     '_get_joined_profile_from_event_id: 8.0', 'getEvent: 3.0']
+
+synapse__enable_registration: 'false'
