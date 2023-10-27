@@ -1,0 +1,49 @@
+---
+
+nginx_acme: False
+nginx__servers:
+  - name: erethon.com
+    listen:
+      - "{{ ansible_host }}:80"
+    redirect_to_ssl: False
+    acme: False
+  - name: blog.erethon.com
+    listen:
+      - "{{ ansible_host }}:80"
+    redirect_to_ssl: False
+    acme: False
+  - name: about.erethon.com
+    listen:
+      - "{{ ansible_host }}:80"
+    redirect_to_ssl: False
+    acme: False
+  - name: f.erethon.com
+    listen:
+      - "{{ ansible_host }}:80"
+    redirect_to_ssl: False
+    acme: False
+  - name: hacked.erethon.com
+    listen:
+      - "{{ ansible_host }}:80"
+    redirect_to_ssl: False
+    acme: False
+  - name: sv1tbt.gr
+    listen:
+      - "{{ ansible_host }}:80"
+    redirect_to_ssl: False
+    acme: False
+  - name: dgrig.com
+    listen:
+      - "{{ ansible_host }}:80"
+    redirect_to_ssl: False
+    acme: False
+  - name: qr.erethon.com
+    listen:
+      - "{{ ansible_host }}:80"
+    redirect_to_ssl: False
+    acme: False
+  - name: workwithme.erethon.com
+    listen:
+      - "{{ ansible_host }}:80"
+    redirect_to_ssl: False
+    acme: False
