@@ -1,0 +1,9 @@
+---
+
+cron__host_jobs:
+  "cleanup_room_history":
+    user: "root"
+    jobs:
+      - name: "Delete events for room 1"
+        job: "curl --header 'Authorization: Bearer {{ synapse__admin_auth_token }}' -X POST -H 'Content-Type: application/json' {{ ansible_host }}:8008/_synapse/admin/v1/purge_history/{{ lookup('password', secret + '/credentials/productionmatrix/synapse/room_id_1') }} -d \"{\\\"delete_local_events\\\": true, \\\"purge_up_to_ts\\\": $(date --date='-10 days' +\\%s\\%3N)}\""
+    special_time: "daily"

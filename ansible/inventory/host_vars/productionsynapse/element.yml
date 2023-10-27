@@ -1,0 +1,16 @@
+---
+
+element__server_room_directory:
+  - "erethon.com"
+
+element__deploy_directory: "/srv/www/sites/riot.dgrig.com/public/"
+
+element__matrix_homeserver: "https://matrix.erethon.com"
+
+element__matrix_server_name: "erethon.com"
+
+element__brand: "Erethon Element"
+
+element__jitsi_url: "meet.libreops.cc"
+
+element__matrix_identity_server: ""

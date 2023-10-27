@@ -1,0 +1,12 @@
+---
+
+postgresql__upstream: True
+
+postgresql__roles:
+  - name: "synapse"
+    password: '{{ lookup("password", secret + "/credentials/productionmatrix/postgresql/password") }}'
+    db: "synapse"
+
+postgresql__databases:
+  - name: "synapse"
+    owner: "synapse"
