@@ -1,0 +1,73 @@
+---
+
+nginx__servers:
+  - name: about.erethon.com
+    type: 'proxy'
+    proxy_pass: "http://{{ hostvars['productionstatic'].ansible_host }}"
+    redirect_to_ssl: True
+    acme: True
+  - name: blog.erethon.com
+    type: 'proxy'
+    proxy_pass: "http://{{ hostvars['productionstatic'].ansible_host }}"
+    redirect_to_ssl: True
+    acme: True
+  - name: erethon.com
+    redirect_to_ssl: True
+    acme: True
+  - name: www.erethon.com
+    redirect_to_ssl: True
+    acme: True
+    redirect: https://erethon.com
+    webroot_create: False
+  - name: matrix.erethon.com
+    type: 'proxy'
+    proxy_pass: "http://{{ hostvars['productionsynapse'].ansible_host }}:8008"
+    redirect_to_ssl: True
+    acme: True
+    location:
+      '~ ^/_synapse/admin/': "deny all;"
+      '~ /': |
+        proxy_set_header Host              $host;
+        proxy_set_header X-Real-IP         $remote_addr;
+        proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Forwarded-Port  443;
+        proxy_pass http://{{ hostvars['productionsynapse'].ansible_host }}:8008;
+  - name: riot.dgrig.com
+    type: 'proxy'
+    proxy_pass: "http://{{ hostvars['productionsynapse'].ansible_host }}"
+    redirect_to_ssl: True
+    acme: True
+  - name: plothopes.com
+    type: 'proxy'
+    proxy_pass: "http://{{ hostvars['productionplothopes'].ansible_host }}"
+    redirect_to_ssl: True
+    acme: True
+  - name: www.plothopes.com
+    redirect_to_ssl: True
+    acme: True
+    redirect: https://plothopes.com
+    webroot_create: False
+  - name: sv1tbt.gr
+    redirect_to_ssl: True
+    acme: True
+    redirect: https://blog.erethon.com
+    webroot_create: False
+  - name: qr.erethon.com
+    type: 'proxy'
+    proxy_pass: "http://{{ hostvars['productionstatic'].ansible_host }}"
+    redirect_to_ssl: True
+    acme: True
+  - name: workwithme.erethon.com
+    type: 'proxy'
+    proxy_pass: "http://{{ hostvars['productionstatic'].ansible_host }}"
+    redirect_to_ssl: True
+    acme: True
+  - name: f.erethon.com
+    type: 'proxy'
+    proxy_pass: "http://{{ hostvars['productionstatic'].ansible_host }}"
+    redirect_to_ssl: True
+    acme: True
+    webroot_create: False
+
+nginx_http_client_max_body_size: 100M
