@@ -36,7 +36,7 @@ resource "libvirt_volume" "base_openbsd_volume" {
   name   = "openbsd_base_volume"
   pool   = var.libvirt_storage_pool
   format = "qcow2"
-  source = "/home/bsd/Disks/packer-openbsd7.2-base"
+  source = "/home/bsd/Disks/packer-openbsd7.4-base"
 }
 
 module "dirty_debian_dev" {
@@ -60,14 +60,14 @@ runcmd:
 EOF
 }
 
-module "openbsd_72" {
+module "openbsd_74" {
   source = "../../modules/libvirt_host"
 
-  host_name         = "openbsd72"
+  host_name         = "openbsd74"
   host_memory       = "2048"
   host_vcpu         = 2
   storage_pool      = var.libvirt_storage_pool
-  volume_name       = "openbsd_72"
+  volume_name       = "openbsd_74"
   base_volume_id    = libvirt_volume.base_openbsd_volume.id
   disks             = [{ "volume_id" : libvirt_volume.base_openbsd_volume.id }]
   network_id        = module.ori_network.id
@@ -120,21 +120,6 @@ runcmd:
 EOF
 }
 
-module "kali_live" {
-  source = "../../modules/libvirt_host"
-
-  host_name       = "kali_live"
-  host_memory     = "4096"
-  host_vcpu       = 4
-  storage_pool    = var.libvirt_storage_pool
-  disks           = [{ "iso" : "/home/bsd/Disks/kali-linux-2020.4-live-amd64.iso" }]
-  network_id      = module.ori_network.id
-  network_cidr    = module.ori_network.cidr[0]
-  network_host    = "22"
-  enable_graphics = true
-  host_autostart  = false
-}
-
 module "red_team_oricono" {
   source = "../../modules/libvirt_host"
 
@@ -169,27 +154,6 @@ module "embedded_rust" {
   network_id              = module.ori_network.id
   network_cidr            = module.ori_network.cidr[0]
   network_host            = "6"
-  enable_cloud_init       = true
-  cloudinit_user_template = <<EOF
-  host_autostart          = false
-runcmd:
-  - echo 'source /etc/network/interfaces.d/*' > /etc/network/interfaces
-EOF
-}
-
-module "ps_debian" {
-  source = "../../modules/libvirt_host"
-
-  host_name               = "ps_debian"
-  host_memory             = "8192"
-  host_vcpu               = 4
-  storage_pool            = var.libvirt_storage_pool
-  volume_name             = "ps_debian"
-  base_volume_id          = libvirt_volume.base_debian_11_volume.id
-  disks                   = [{ "volume_id" : libvirt_volume.base_debian_11_volume.id }]
-  network_id              = module.ori_network.id
-  network_cidr            = module.ori_network.cidr[0]
-  network_host            = "8"
   enable_cloud_init       = true
   cloudinit_user_template = <<EOF
   host_autostart          = false
