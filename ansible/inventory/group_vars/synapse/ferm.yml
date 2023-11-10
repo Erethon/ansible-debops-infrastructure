@@ -6,6 +6,17 @@ ferm__group_rules:
     name: 'synapse'
     table: 'filter'
     chain: 'INPUT'
-    dport: ['{{ synapse__port }}', '{{ synapse__metrics_port }}']
+    dport: ['{{ synapse__port }}']
+    saddr: ["192.168.135.1", "127.0.0.1"]
+    protocol: 'tcp'
+    domain: 'ip'
+
+  - type: 'accept'
+    filename: 'Synapse'
+    name: 'synapse-metrics'
+    table: 'filter'
+    chain: 'INPUT'
+    dport: ['{{ synapse__metrics_port }}']
+    saddr: "{% if hostvars['prometheus_host'] is defined %} {{ hostvars['prometheus_host'].ansible_host }} {% else %} '127.0.0.1' {% endif %}"
     protocol: 'tcp'
     domain: 'ip'
