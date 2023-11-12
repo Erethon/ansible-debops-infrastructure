@@ -4,3 +4,24 @@ resources__host_files:
   - dest: '/etc/default/prometheus-node-exporter'
     content: |
       ARGS="--web.listen-address={{ node_exporter__listen_address }}:9100"
+  - dest: '/srv/www/sites/erethon.com/public/.well-known/matrix/client'
+    content: |
+      {
+        "m.homeserver": {
+                "base_url": "https://matrix.erethon.com"
+        }
+      }
+  - dest: '/srv/www/sites/erethon.com/public/.well-known/matrix/server'
+    content: |
+      {
+        "m.server": "matrix.erethon.com:443"
+      }
+  - dest: '/srv/www/sites/erethon.com/public/.well-known/matrix/support'
+    content: |
+      {
+        "contacts": [{
+          "matrix_id": "@dgrig:erethon.com",
+          "email_address": "matrix@erethon.com",
+          "role": "admin"
+        }]
+      }
