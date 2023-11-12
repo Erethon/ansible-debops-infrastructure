@@ -6,7 +6,7 @@ pki_realms:
   - name: 'erethon.com'
     acme: True
     acme_subdomains: ['about', 'blog', 'matrix', 'www', 'qr', 'workwithme', 'f',
-    'git', 'mqtt', 'ret']
+    'git', 'mqtt', 'ret', 'grafana']
   - name: 'plothopes.com'
     acme: True
     acme_subdomains: ['www']
