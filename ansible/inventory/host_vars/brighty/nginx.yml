@@ -22,6 +22,8 @@ nginx__servers:
     acme: True
     redirect: https://erethon.com
     webroot_create: False
+    location:
+      '/': "return 301 https://erethon.com;"
   - name: matrix.erethon.com
     type: 'proxy'
     proxy_pass: "http://{{ hostvars['productionsynapse'].ansible_host }}:8008"
@@ -51,6 +53,8 @@ nginx__servers:
     acme: True
     redirect: https://plothopes.com
     webroot_create: False
+    location:
+      '/': "return 301 https://plothopes.com;"
   - name: sv1tbt.gr
     redirect_to_ssl: True
     acme: True
@@ -79,3 +83,15 @@ nginx__servers:
     acme: True
 
 nginx_http_client_max_body_size: 100M
+
+# This is an ugly hack for now
+nginx_extra_options: |
+  stream {
+    upstream stmp_server {
+      server  192.168.135.9:25;
+    }
+    server {
+      listen     25;
+      proxy_pass stmp_server;
+    }
+  }
