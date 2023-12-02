@@ -43,8 +43,8 @@ module "dirty_debian_dev" {
   source = "../../modules/libvirt_host"
 
   host_name               = "dirty_debian_dev"
-  host_memory             = "2048"
-  host_vcpu               = 2
+  host_memory             = "24480"
+  host_vcpu               = 8
   storage_pool            = var.libvirt_storage_pool
   volume_name             = "dirty_debian_dev"
   base_volume_id          = libvirt_volume.base_debian_11_volume.id
