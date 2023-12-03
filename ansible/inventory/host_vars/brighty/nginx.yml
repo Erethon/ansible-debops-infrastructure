@@ -81,6 +81,11 @@ nginx__servers:
     proxy_pass: "http://{{ hostvars['productionmetrics'].ansible_host }}:3000"
     redirect_to_ssl: True
     acme: True
+  - name: listmonk.erethon.com
+    type: 'proxy'
+    proxy_pass: "http://{{ hostvars['productionlistmonk'].ansible_host }}:9000"
+    redirect_to_ssl: True
+    acme: True
 
 nginx_http_client_max_body_size: 100M
 

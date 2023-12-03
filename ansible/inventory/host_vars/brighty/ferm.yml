@@ -51,3 +51,12 @@ ferm__host_rules:
           MASQUERADE;
         }
       }
+
+  - type: 'accept'
+    filename: 'smtp'
+    name: 'smtp'
+    table: 'filter'
+    chain: 'INPUT'
+    dport: [ 25 ]
+    protocol: 'tcp'
+    domain: 'ip'
