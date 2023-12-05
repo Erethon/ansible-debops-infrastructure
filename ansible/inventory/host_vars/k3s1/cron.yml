@@ -1,0 +1,9 @@
+---
+
+cron__host_jobs:
+  "backup_k3s_volumes":
+    user: "root"
+    jobs:
+      - name: "Backup all k8s volumes"
+        job: "rclone sync -L /volumes/ b2:home-k3s"
+    special_time: "weekly"

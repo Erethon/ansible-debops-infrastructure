@@ -1,0 +1,14 @@
+---
+
+resources__enabled: True
+
+resources__host_paths:
+  - '/root/.config/rclone/'
+
+resources__host_files:
+  - dest: '/root/.config/rclone/rclone.conf'
+    content: |
+      [b2]
+      type = b2
+      account = {{ lookup("password", secret + "/credentials/k3s1/b2/k3skeyid") }}
+      key = {{ lookup("password", secret + "/credentials/k3s1/b2/k3skey") }}
