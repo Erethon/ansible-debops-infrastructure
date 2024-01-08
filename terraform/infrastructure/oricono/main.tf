@@ -32,6 +32,13 @@ resource "libvirt_volume" "base_debian_11_volume" {
   source = "/home/bsd/Disks/packer-debian11-base-v1"
 }
 
+resource "libvirt_volume" "base_debian_12_volume" {
+  name   = "debian_base_12_volume"
+  pool   = var.libvirt_storage_pool
+  format = "qcow2"
+  source = "/home/bsd/Disks/packer-debian12-base-v1"
+}
+
 resource "libvirt_volume" "base_openbsd_volume" {
   name   = "openbsd_base_volume"
   pool   = var.libvirt_storage_pool
@@ -47,6 +54,7 @@ module "dirty_debian_dev" {
   host_vcpu               = 8
   storage_pool            = var.libvirt_storage_pool
   volume_name             = "dirty_debian_dev"
+  volume_size             = "26843545600"
   base_volume_id          = libvirt_volume.base_debian_11_volume.id
   disks                   = [{ "volume_id" : libvirt_volume.base_debian_11_volume.id }]
   network_id              = module.ori_network.id
@@ -154,6 +162,27 @@ module "embedded_rust" {
   network_id              = module.ori_network.id
   network_cidr            = module.ori_network.cidr[0]
   network_host            = "6"
+  enable_cloud_init       = true
+  cloudinit_user_template = <<EOF
+  host_autostart          = false
+runcmd:
+  - echo 'source /etc/network/interfaces.d/*' > /etc/network/interfaces
+EOF
+}
+
+module "tee_debian" {
+  source = "../../modules/libvirt_host"
+
+  host_name               = "tee"
+  host_memory             = "4096"
+  host_vcpu               = 4
+  storage_pool            = var.libvirt_storage_pool
+  volume_name             = "tee"
+  base_volume_id          = libvirt_volume.base_debian_12_volume.id
+  disks                   = [{ "volume_id" : libvirt_volume.base_debian_12_volume.id }]
+  network_id              = module.ori_network.id
+  network_cidr            = module.ori_network.cidr[0]
+  network_host            = "8"
   enable_cloud_init       = true
   cloudinit_user_template = <<EOF
   host_autostart          = false
