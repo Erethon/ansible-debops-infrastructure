@@ -2,14 +2,14 @@
 
 ferm__host_rules:
   - type: 'accept'
-    filename: 'nodeexporter'
-    name: 'nodeexporter'
+    filename: 'prometheusexporters'
+    name: 'prometheusexporters'
     table: 'filter'
     chain: 'INPUT'
-    dport: [ 9100 ]
+    dport: [ 9100, 9177 ]
     protocol: 'tcp'
     # Current prometheus host
-    saddr: '163.172.24.171/32'
+    saddr: "{{ hostvars['productionmetrics'].ansible_host }}"
     domain: 'ip'
 
   - type: 'accept'

@@ -3,7 +3,10 @@
 resources__host_files:
   - dest: '/etc/default/prometheus-node-exporter'
     content: |
-      ARGS="--web.listen-address={{ node_exporter__listen_address }}:9100"
+      ARGS="--web.listen-address=brighty.vm.erethon.com:9100"
+  - dest: '/etc/default/prometheus-libvirt-exporter'
+    content: |
+      ARGS="--web.listen-address=brighty.vm.erethon.com:9177"
   - dest: '/srv/www/sites/erethon.com/public/.well-known/matrix/client'
     content: |
       {
