@@ -12,7 +12,7 @@ resource "kubernetes_pod" "ha" {
 
   spec {
     container {
-      image = "ghcr.io/home-assistant/home-assistant"
+      image = "ghcr.io/home-assistant/home-assistant:2024.1.5"
       name  = "homeassistant"
 
       port {
