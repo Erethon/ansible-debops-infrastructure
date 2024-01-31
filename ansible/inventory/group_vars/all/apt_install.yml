@@ -3,4 +3,4 @@
 apt_install__packages: [git, vim, screen, tmux, fail2ban, mlocate, htop, sudo,
   ferm, strace, ltrace, file, less, nmon, colordiff, bash-completion, telnet,
   dstat, ca-certificates, curl, sysstat, tcpdump, zsh, mosh, lsof, iotop,
-  netcat-openbsd, mtr-tiny, bwm-ng, etckeeper, prometheus-node-exporter]
+  netcat-openbsd, mtr-tiny, bwm-ng, etckeeper, prometheus-node-exporter, whois]
