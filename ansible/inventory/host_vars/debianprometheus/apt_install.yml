@@ -1,3 +1,0 @@
----
-
-apt_install__host_packages: ['grafana', 'prometheus']
