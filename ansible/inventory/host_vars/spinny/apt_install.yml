@@ -1,7 +1,0 @@
----
-
-apt_install__host_packages: ['haproxy', 'cryptsetup', 'kvm', 'libvirt-clients',
-                             'libvirt-daemon-system', 'ebtables', 'dnsmasq',
-                             'bridge-utils', 'qemu-utils', 'virtinst',
-                             'openvpn', 'easy-rsa', 'pdns-server',
-                             'netcat-openbsd']
