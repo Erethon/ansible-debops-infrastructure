@@ -86,6 +86,12 @@ nginx__servers:
     proxy_pass: "http://{{ hostvars['productionlistmonk'].ansible_host }}:9000"
     redirect_to_ssl: True
     acme: True
+  - name: rnode-flasher.erethon.com
+    type: 'proxy'
+    proxy_pass: "http://{{ hostvars['productionstatic'].ansible_host }}"
+    redirect_to_ssl: True
+    acme: True
+    webroot_create: False
 
 nginx_http_client_max_body_size: 100M
 

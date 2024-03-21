@@ -12,6 +12,9 @@ nginx__servers:
       - "{{ ansible_host }}:80"
     redirect_to_ssl: False
     acme: False
+    location:
+      '/': 'try_files $uri $uri/ $uri.html $uri.htm /index.html /index.htm =404;'
+      '~ ^/about/?$': 'return 302 https://about.erethon.com;'
   - name: about.erethon.com
     listen:
       - "{{ ansible_host }}:80"
@@ -43,6 +46,11 @@ nginx__servers:
     redirect_to_ssl: False
     acme: False
   - name: workwithme.erethon.com
+    listen:
+      - "{{ ansible_host }}:80"
+    redirect_to_ssl: False
+    acme: False
+  - name: rnode-flasher.erethon.com
     listen:
       - "{{ ansible_host }}:80"
     redirect_to_ssl: False
