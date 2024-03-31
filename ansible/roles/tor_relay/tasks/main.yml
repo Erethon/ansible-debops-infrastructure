@@ -11,5 +11,5 @@
 - name: Enable and restart tor daemon
   systemd:
     name: tor
-    enabled: yes
+    enabled: true
     state: restarted

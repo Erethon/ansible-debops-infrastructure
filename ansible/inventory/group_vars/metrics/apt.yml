@@ -4,3 +4,5 @@ apt__host_keys:
   - url: 'https://packages.grafana.com/gpg.key'
 apt__host_repositories:
   - repo: 'deb https://packages.grafana.com/oss/deb stable main'
+    name: "grafana"
+    filename: "grafana"

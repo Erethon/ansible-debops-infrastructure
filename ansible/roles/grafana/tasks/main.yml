@@ -13,5 +13,5 @@
 - name: Enable and restart Grafana service
   systemd:
     name: grafana-server
-    enabled: yes
+    enabled: true
     state: restarted
