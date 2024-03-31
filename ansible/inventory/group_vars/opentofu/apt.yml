@@ -1,0 +1,12 @@
+---
+
+apt__group_keys:
+  - url: "https://get.opentofu.org/opentofu.gpg"
+    keyring: "/etc/apt/keyrings/opentofu.gpg"
+  - url: "https://packages.opentofu.org/opentofu/tofu/gpgkey"
+    keyring: "/etc/apt/keyrings/opentofu-repo.gpg"
+
+apt__group_repositories:
+  - name: "opentofu"
+    repo: "deb [signed-by=/etc/apt/keyrings/opentofu.gpg,/etc/apt/keyrings/opentofu-repo.gpg] https://packages.opentofu.org/opentofu/tofu/any/ any main"
+    filename: "opentofu.list"
