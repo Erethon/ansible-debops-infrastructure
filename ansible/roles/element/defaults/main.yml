@@ -2,9 +2,9 @@
 
 element__signing_key: https://packages.riot.im/element-release-key.asc
 
-element__release_version: "1.11.64"
+element__release_version: "1.11.68"
 
-element__release_checksum: "6d540e7b3923305d2dca61237be6465fea48fff8099baaab56bdefcfae5e1c949ec1b4ed18579ee64687d6bd86e7aaa6f64022a368b7a0ca113f64e706342f64"
+element__release_checksum: "c54dee5ca6270a1ff7134e7720dbcc94e8acdc6b5e75a1b75947febffd8c84c23c38bf6e3b58c24de30f1d3975761a542ba47c74fffb3382095f18c90d1b5f9e"
 
 element__release_url: "https://github.com/vector-im/element-web/releases/download/v{{ element__release_version }}/element-v{{ element__release_version }}.tar.gz"
 
