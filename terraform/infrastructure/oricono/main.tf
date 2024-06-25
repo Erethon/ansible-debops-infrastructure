@@ -46,6 +46,13 @@ resource "libvirt_volume" "base_openbsd_volume" {
   source = "/home/bsd/Disks/packer-openbsd7.4-base"
 }
 
+resource "libvirt_volume" "base_nixos_volume" {
+  name   = "nixos_base_volume"
+  pool   = var.libvirt_storage_pool
+  format = "qcow2"
+  source = "/home/bsd/Disks/nixos-base-v1"
+}
+
 module "dirty_debian_dev" {
   source = "../../modules/libvirt_host"
 
@@ -54,7 +61,7 @@ module "dirty_debian_dev" {
   host_vcpu               = 8
   storage_pool            = var.libvirt_storage_pool
   volume_name             = "dirty_debian_dev"
-  volume_size             = "26843545600"
+  volume_size             = "6442450944"
   base_volume_id          = libvirt_volume.base_debian_11_volume.id
   disks                   = [{ "volume_id" : libvirt_volume.base_debian_11_volume.id }]
   network_id              = module.ori_network.id
@@ -189,4 +196,36 @@ module "tee_debian" {
 runcmd:
   - echo 'source /etc/network/interfaces.d/*' > /etc/network/interfaces
 EOF
+}
+
+module "nixos_test_1" {
+  source            = "../../modules/libvirt_host"
+  host_name         = "nixostest1"
+  host_memory       = "2048"
+  host_vcpu         = 2
+  storage_pool      = var.libvirt_storage_pool
+  volume_name       = "nixostest1"
+  base_volume_id    = libvirt_volume.base_nixos_volume.id
+  disks             = [{ "volume_id" : libvirt_volume.base_nixos_volume.id }]
+  network_id        = module.ori_network.id
+  network_cidr      = module.ori_network.cidr[0]
+  network_host      = "9"
+  enable_cloud_init = false
+  host_autostart    = false
+}
+
+module "nixos_rnd" {
+  source            = "../../modules/libvirt_host"
+  host_name         = "nixosrnd"
+  host_memory       = "2048"
+  host_vcpu         = 2
+  storage_pool      = var.libvirt_storage_pool
+  volume_name       = "nixosrnd"
+  base_volume_id    = libvirt_volume.base_nixos_volume.id
+  disks             = [{ "volume_id" : libvirt_volume.base_nixos_volume.id }]
+  network_id        = module.ori_network.id
+  network_cidr      = module.ori_network.cidr[0]
+  network_host      = "10"
+  enable_cloud_init = false
+  host_autostart    = false
 }
