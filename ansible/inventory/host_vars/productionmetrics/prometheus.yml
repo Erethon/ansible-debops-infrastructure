@@ -1,0 +1,21 @@
+---
+
+prometheus__node_targets: ['productionsynapse.vm.erethon.com',
+  'productionpgmatrix.vm.erethon.com', 'oricono.int.erethon.com',
+  'kagari.int.erethon.com', 'brighty.vm.erethon.com', 'lenny.int.erethon.com',
+  'thor.wg.erethon.com', 'productionstatic.vm.erethon.com',
+  'productionplothopes.vm.erethon.com', 'productionmetrics.vm.erethon.com',
+  'productionlistmonk.vm.erethon.com', 'productionmail.vm.erethon.com']
+prometheus__http_targets: ['https://erethon.com',
+  'https://blog.erethon.com', 'https://grafana.erethon.com',
+  'https://riot.dgrig.com', 'https://matrix.erethon.com',
+  'https://plothopes.com', 'https://f.erethon.com',
+  'https://grafana-lib.erethon.com', 'https://tf.erethon.com',
+  'https://git.erethon.com', 'https://about.erethon.com']
+prometheus__postgres_targets: ['pgmatrix.int.erethon.com']
+prometheus__synapse_target: 'matrix.int.erethon.com'
+prometheus__apcupsd_target: 'thor.int.erethon.com'
+prometheus__libvirt_targets: ['oricono.int.erethon.com', 'brighty.vm.erethon.com']
+prometheus__icmp_targets: ['1.1.1.1', '8.8.8.8', 'erethon.com',
+  'mail.erethon.com', 'brighty.erethon.com', '192.168.2.1']
+prometheus__icmp_replacement: 'thor.wg.erethon.com:9115'
