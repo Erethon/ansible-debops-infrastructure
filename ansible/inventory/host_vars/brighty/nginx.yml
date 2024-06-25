@@ -92,6 +92,18 @@ nginx__servers:
     redirect_to_ssl: True
     acme: True
     webroot_create: False
+  - name: buildbot.erethon.com
+    type: 'proxy'
+    proxy_pass: "http://10.0.135.45:8010"
+    redirect_to_ssl: True
+    acme: True
+    webroot_create: False
+  - name: tz.erethon.com
+    type: 'proxy'
+    proxy_pass: "http://{{ hostvars['productionstatic'].ansible_host }}"
+    redirect_to_ssl: True
+    acme: True
+    webroot_create: False
 
 nginx_http_client_max_body_size: 100M
 

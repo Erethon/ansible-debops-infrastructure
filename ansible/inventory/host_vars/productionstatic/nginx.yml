@@ -1,6 +1,7 @@
 ---
 
 nginx_acme: False
+nginx_http_extra_options: 'limit_req_zone $binary_remote_addr zone=cgilimit:10m rate=5r/s;'
 nginx__servers:
   - name: erethon.com
     listen:
@@ -54,4 +55,17 @@ nginx__servers:
     listen:
       - "{{ ansible_host }}:80"
     redirect_to_ssl: False
+    acme: False
+  - name: tz.erethon.com
+    listen:
+      - "{{ ansible_host }}:80"
+    redirect_to_ssl: False
+    location:
+      '/': |
+        limit_req zone=cgilimit burst=5 nodelay;
+        limit_req_status 429;
+        root /srv/www/sites/tz.erethon.com/public;
+        include fastcgi_params;
+        fastcgi_pass unix:/var/run/fcgiwrap.socket;
+        fastcgi_param SCRIPT_FILENAME /srv/www/sites/tz.erethon.com/public/tz-cgi.sh;
     acme: False

@@ -1,0 +1,10 @@
+---
+
+resources__host_files:
+  - dest: '/srv/www/sites/tz.erethon.com/public/tz-cgi.sh'
+    content: |
+      #!/usr/bin/env sh
+      echo "Content-Type: text/html\n"
+      echo "<html><head><title>Erethon's Time Zone</title></head><body>Erethon's time and date is: "
+      TZ="Europe/Athens" LC_TIME="C.UTF-8" date
+      echo "</body></html>"
