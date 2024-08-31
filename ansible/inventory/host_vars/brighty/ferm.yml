@@ -60,3 +60,12 @@ ferm__host_rules:
     dport: [ 25 ]
     protocol: 'tcp'
     domain: 'ip'
+
+  - type: 'accept'
+    filename: 'derp'
+    name: 'derp'
+    table: 'filter'
+    chain: 'INPUT'
+    dport: [ 3478 ]
+    protocol: 'udp'
+    domain: 'ip'

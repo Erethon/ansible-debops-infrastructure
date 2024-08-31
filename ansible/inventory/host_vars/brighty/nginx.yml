@@ -104,6 +104,12 @@ nginx__servers:
     redirect_to_ssl: True
     acme: True
     webroot_create: False
+  - name: hs.erethon.com
+    type: 'proxy'
+    proxy_pass: "http://{{ hostvars['nixosvpn'].ansible_host }}:8080"
+    redirect_to_ssl: True
+    acme: True
+    webroot_create: False
 
 nginx_http_client_max_body_size: 100M
 
@@ -112,6 +118,13 @@ nginx_extra_options: |
   stream {
     upstream stmp_server {
       server  192.168.135.9:25;
+    }
+    upstream hs {
+      server  192.168.135.10:3478;
+    }
+    server {
+      listen     3478 udp;
+      proxy_pass hs;
     }
     server {
       listen     25;

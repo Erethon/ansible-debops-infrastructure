@@ -7,7 +7,7 @@ pki_realms:
     acme: True
     acme_subdomains: ['about', 'blog', 'matrix', 'www', 'qr', 'workwithme',
       'f', 'git', 'mqtt', 'ret', 'grafana', 'listmonk', 'rnode-flasher',
-      'buildbot', 'tz']
+      'buildbot', 'tz', 'hs']
   - name: 'plothopes.com'
     acme: True
     acme_subdomains: ['www']
