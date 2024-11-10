@@ -39,3 +39,5 @@ synapse__enable_phonehome_stats: 'false'
 synapse__remote_media_lifetime: '1d'
 
 synapse__token_registration: 'true'
+
+synapse__authenticated_media: 'true'
